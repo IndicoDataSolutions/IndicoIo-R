@@ -18,7 +18,7 @@ test_that("Throws error on empty text", {
 
 test_that("Batch Predict Text returns appropriate response", {
     test_string_arr <- c("Clearly an English sentence.", "Clearly not an English sentence.")
-    results <- batch_predict_text(test_string_arr, apis=c("sentiment", "language"))
+    results <- predict_text(test_string_arr, apis=c("sentiment", "language"))
 
     expect_is(results, "list")
     expect_true("sentiment" %in% names(results))
@@ -29,7 +29,7 @@ test_that("Batch Predict Text returns appropriate response", {
 
 test_that("Predict Image returns appropriate response", {
     fer_set <- c("Angry", "Sad", "Neutral", "Surprise", "Fear", "Happy")
-    test_image <- matrix(runif(48*48, 0, 1), nrow = 48)
+    test_image <- paste(readLines("image/base64.txt"), collapse=" ")
     results <- predict_image(test_image, apis=c("facial_features", "face_emotion"))
 
     expect_is(results, "list")
@@ -45,9 +45,9 @@ test_that("Throws error on empty or wrong image", {
 
 test_that("Batch Predict Image returns appropriate response", {
     test_image_list = list()
-    test_image_list[[1]] <- matrix(runif(48*48, 0, 1), nrow = 48)
-    test_image_list[[2]] <- matrix(runif(48*48, 0, 1), nrow = 48)
-    results <- batch_predict_image(test_image_list, apis=c("facial_features", "face_emotion"))
+    test_image_list[[1]] <- paste(readLines("image/base64.txt"), collapse=" ")
+    test_image_list[[2]] <- paste(readLines("image/base64.txt"), collapse=" ")
+    results <- predict_image(test_image_list, apis=c("facial_features", "face_emotion"))
 
     expect_is(results, "list")
     expect_true("facial_features" %in% names(results))

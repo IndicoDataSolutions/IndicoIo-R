@@ -19,14 +19,14 @@ test_that("request_url functions as expected", {
 })
 
 test_that("format_image functions as expected", {
-  img <- matrix(runif(48*48, 0, 1), nrow = 48)
+  img <- paste(readLines("image/base64.txt"), collapse=" ")
   result <- format_image(img, 48)
   expect_is(result, "character")
 });
 
 test_that("format_images functions as expected", {
   img_list = list()
-  img_list[[1]] = matrix(runif(48*48, 0, 1), nrow = 48)
+  img_list[[1]] = paste(readLines("image/base64.txt"), collapse=" ")
   result <- format_images(img_list, 48)
   expect_is(result, "list")
   expect_equal(length(result), 1)

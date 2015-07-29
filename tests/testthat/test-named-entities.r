@@ -26,7 +26,7 @@ test_that("Throws error on empty text", {
 
 test_that("Batch named entites should return all entities with breakdown", {
   test_string <- c("I want to move to New York", "I would hate to move to Cleveland")
-  docuements <- batch_named_entities(test_string)
+  docuements <- named_entities(test_string)
 
   expect_is(docuements, "list")
   entities <- docuements[[1]]
@@ -40,7 +40,7 @@ test_that("Batch named entites should return all entities with breakdown", {
 
 test_that("Batch named entities should return nothing with a threshold of 1", {
   test_string <- c("I want to move to New York", "I would hate to move to Cleveland")
-  docuements <- batch_named_entities(test_string, threshold = 1)
+  docuements <- named_entities(test_string, threshold = 1)
   entities <- docuements[[1]]
   expect_equal(length(entities), 0)
 })

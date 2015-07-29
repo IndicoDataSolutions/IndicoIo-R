@@ -17,7 +17,7 @@ test_that("Throws error on empty text", {
 
 test_that("Batch Twitter Engagement API returns list of float engagement scores", {
   test_string_arr <- c("Guns don't kill people, people kill people.", "Let's all be friends.")
-  engagement <- batch_twitter_engagement(test_string_arr)
+  engagement <- twitter_engagement(test_string_arr)
   expect_is(engagement, "list")
   expect_is(engagement[[1]], "numeric")
   expect_true(engagement[[1]] <= 1)

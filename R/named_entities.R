@@ -20,23 +20,3 @@ named_entities <- function(text, api_key = FALSE, cloud = FALSE, ...) {
 
   make_request(text, 'namedentities', api_key, cloud, ...)
 }
-
-#' Named entities with likely categories
-#'
-#' Given input text, returns named entities and the probabilities of what category they are in
-#'
-#' @inheritParams political
-#' @return List of lists entity category-probability pairs
-#' @keywords indico.io machine learning API classification tagging
-#' @seealso \code{\link{political}}, \code{\link{sentiment}}
-#' @export
-#' @import httr rjson stringr
-#' @examples
-#' text_list <- list()
-#' text_list[[1]] <- "London Undergroud's boss Mike Brown warned of the strike..."
-#' entities <- batch_named_entities(text_list)
-#  entities
-
-batch_named_entities <- function(text, api_key = FALSE, cloud = FALSE, ...) {
-  make_request(text, 'namedentities', api_key, cloud, batch = TRUE, ...)
-}

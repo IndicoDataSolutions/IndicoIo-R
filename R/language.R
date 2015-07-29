@@ -27,27 +27,3 @@ language <- function(text, api_key = FALSE, cloud = FALSE, ...) {
 
   make_request(text, 'language', api_key, cloud, ...)
 }
-
-#' Detects language of the given documents
-#'
-#' Given a list of documents, returns a list of probability distributions over 33 possible
-#' languages
-#' @inheritParams batch_political
-#' @return List of lists with language probability pairs
-#' @keywords indico.io machine learning API language detection
-#' @seealso \code{\link{political}}, \code{\link{sentiment}}
-#' @export
-#' @import httr rjson stringr
-#' @examples
-#' languages <- language(c("Monday: Delightful with mostly sunny skies.
-#'                          Highs in the low 70s."))
-#' languages
-#' most.possible <- sort(unlist(languages[[1]]), decreasing = TRUE)[1:2]
-#' cat(sprintf("Detected %s language with probability %0.4f.\n",
-#'             names(most.possible)[1], most.possible[1]))
-#' cat(sprintf("Next possible is %s with probability %0.4f.",
-#'             names(most.possible)[2], most.possible[2]))
-#'
-batch_language <- function(text, api_key = FALSE, cloud = FALSE, ...) {
-  make_request(text, 'language', api_key, cloud, batch = TRUE, ...)
-}

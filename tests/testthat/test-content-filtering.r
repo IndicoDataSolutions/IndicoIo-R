@@ -2,7 +2,7 @@ context("Content Filtering")
 
 test_that("Content Filtering API returns proper answer", {
 
-  test_image <- matrix(runif(64*64, 0, 1), nrow = 64)
+  test_image <- paste(readLines("image/base64.txt"), collapse=" ")
   probability <- content_filtering(test_image)
 
   expect_is(probability, "numeric")
@@ -17,9 +17,9 @@ test_that("Throws error on empty or wrong image", {
 test_that("Batch Content Filtering API returns proper answer", {
 
   test_image_arr <- list()
-  test_image_arr[[1]] = matrix(runif(64*64, 0, 1), nrow = 64)
+  test_image_arr[[1]] = paste(readLines("image/base64.txt"), collapse=" ")
 
-  probabilities <- batch_content_filtering(test_image_arr)
+  probabilities <- content_filtering(test_image_arr)
 
   expect_is(probabilities, "list")
   expect_is(probabilities[[1]], "numeric")

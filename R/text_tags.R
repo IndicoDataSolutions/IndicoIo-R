@@ -26,29 +26,3 @@ text_tags <- function(text, api_key = FALSE, cloud = FALSE, ...) {
 
   make_request(text, 'texttags', api_key, cloud, ...)
 }
-
-#' Tags text with likely categories
-#'
-#' Given a list of input documents, returns a list of probability distributions
-#' over 111 possible topics
-#' @inheritParams political
-#' @return List of lists with text tag probability pairs
-#' @keywords indico.io machine learning API classification tagging
-#' @seealso \code{\link{political}}, \code{\link{sentiment}}
-#' @export
-#' @import httr rjson stringr
-#' @examples
-#' text_list <- list()
-#' text_list[[1]] <- "Monday: Delightful with mostly sunny skies.
-#'                                  Highs in the low 70s."
-#' categories <- batch_text_tags(text_list)
-#' categories
-#' most.possible <- sort(unlist(categories[[1]]), decreasing = TRUE)[1:2]
-#' cat(sprintf("Detected category %s with probability %0.4f.\n",
-#'             names(most.possible)[1], most.possible[1]))
-#' cat(sprintf("Next possible is %s with probability %0.4f.",
-#'             names(most.possible)[2], most.possible[2]))
-#'
-batch_text_tags <- function(text, api_key = FALSE, cloud = FALSE, ...) {
-  make_request(text, 'texttags', api_key, cloud, batch = TRUE, ...)
-}

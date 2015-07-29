@@ -31,7 +31,7 @@ Given an input image, returns a float probability between 0 and 1 that content i
 * For ideal performance, images should be square aspect ratio but non-square aspect ratios are supported as well.
 }
 \examples{
-img <- matrix(runif(64*64, 0, 1), nrow = 64)
+img <- "../tests/testthat/image/image.png"
 probabilities <- content_filtering(img)
 }
 \seealso{
