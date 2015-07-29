@@ -4,12 +4,14 @@
 \alias{format_image}
 \title{Returns a response from the indico API endpoint}
 \usage{
-format_image(img, size)
+format_image(img, size, min_axis = FALSE)
 }
 \arguments{
 \item{img}{Image to convert to a data.frame}
 
 \item{size}{Size of image to resize to}
+
+\item{min_axis}{Whether or not to keep aspect ratio '}
 }
 \value{
 string base64 encoding of resized image

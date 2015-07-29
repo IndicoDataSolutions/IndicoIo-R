@@ -33,6 +33,19 @@ test_that("format_images functions as expected", {
   expect_is(result[[1]], "character")
 });
 
+test_that("min_resize functions as expected", {
+    img <- matrix(runif(50*96, 0, 1), nrow = 50)
+    result <- format_image(img, 48, TRUE)
+
+    decoded_img <- base64decode(result)
+    decoded_img <- readPNG(decoded_img)
+    width <- ncol(decoded_img)
+    height <- nrow(decoded_img)
+
+    expect_equal(height, 48)
+    expect_equal(width, 25)
+});
+
 test_that("auth configuration is loaded from environment variables", {
   # store previous config
   prev_api_key <- Sys.getenv("INDICO_API_KEY", unset = FALSE)

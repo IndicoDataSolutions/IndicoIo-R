@@ -29,7 +29,7 @@ content_filtering <- function(img, api_key = FALSE, cloud = FALSE, ...) {
     stop("Image should be represented by two-dimensional structure!")
   }
 
-  img <- format_image(img, 128)
+  img <- format_image(img, 128, TRUE)
   make_request(img, 'contentfiltering', api_key, cloud, ...)
 }
 
@@ -56,6 +56,6 @@ content_filtering <- function(img, api_key = FALSE, cloud = FALSE, ...) {
 #' probabilities <- batch_content_filtering(img_list)
 #'
 batch_content_filtering <- function(imgs, api_key = FALSE, cloud = FALSE, ...) {
-  img_list <- format_images(imgs, 128)
+  img_list <- format_images(imgs, 128, TRUE)
   make_request(img_list, 'contentfiltering', api_key, cloud, batch = TRUE, ...)
 }
