@@ -41,7 +41,11 @@ face_emotion <- function(img, api_key = FALSE, cloud = FALSE, ...) {
     stop("No image for analysis provided!")
   }
 
-  img <- format_image(img, 64)
+  options <- list(...)
+  img <- format_image(img,
+      if(exists("detect", options) && options["detect"]==TRUE) 48 else FALSE
+  )
+
   make_request(img, 'fer', api_key, cloud, ...)
 }
 

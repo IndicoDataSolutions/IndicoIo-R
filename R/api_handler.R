@@ -94,7 +94,7 @@ format_image <- function(img, size) {
     warning("Image input as matrices and dataframes will be deprecated in the next major release");
   }
 
-  if (nrow(img) > size && ncol(img) > size) {
+  if (size && nrow(img) > size && ncol(img) > size) {
     img <- resize(img, size, size)
   }
 
