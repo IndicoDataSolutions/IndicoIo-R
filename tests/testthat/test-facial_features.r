@@ -1,7 +1,7 @@
 context("Facial Features Detection")
 
 test_that("Facial Features Detection API returns proper answer", {
-  test_image <- matrix(runif(48*48, 0, 1), nrow = 48)
+  test_image <- paste(readLines("image/base64.txt"), collapse=" ")
   features <- facial_features(test_image)
 
   expect_is(features, "list")
@@ -9,7 +9,7 @@ test_that("Facial Features Detection API returns proper answer", {
 })
 
 test_that("facial_features alias also function", {
-  test_image <- matrix(runif(48*48, 0, 1), nrow = 48)
+  test_image <- paste(readLines("image/base64.txt"), collapse=" ")
   features <- facial_features(test_image)
 
   expect_is(features, "list")
@@ -23,8 +23,8 @@ test_that("Throws error on empty or wrong image", {
 
 test_that("Batch Facial Features Detection API returns proper answer", {
   test_image_list = list()
-  test_image_list[[1]] <- matrix(runif(48*48, 0, 1), nrow = 48)
-  features <- batch_facial_features(test_image_list)
+  test_image_list[[1]] <- paste(readLines("image/base64.txt"), collapse=" ")
+  features <- facial_features(test_image_list)
 
   expect_is(features, "list")
   expect_is(features[[1]], "list")

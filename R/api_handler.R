@@ -10,7 +10,7 @@
 #' @return error or response extracted from the indico API response
 #' @keywords indico.io machine learning API
 #' @import httr rjson stringr
-make_request <- function(data, api, api_key = FALSE, cloud = FALSE, batch = FALSE, ...) {
+make_request <- function(data, api, api_key = FALSE, cloud = FALSE, ...) {
   # default to env variables and config file settings
   if (!is.character(cloud) && (cloud == FALSE)) {
     cloud <- .indicoio$cloud
@@ -18,6 +18,8 @@ make_request <- function(data, api, api_key = FALSE, cloud = FALSE, batch = FALS
   if (!is.character(api_key) && (api_key == FALSE)) {
     api_key <- .indicoio$api_key
   }
+
+  batch <- typeof(data) == "list" || length(data) > 1
 
   # compose the proper request url
   url <- request_url(cloud, api, batch, api_key, ...)
@@ -90,8 +92,10 @@ format_image <- function(img, size) {
       img <- base64decode(img)
       img <- readPNG(img)
     }
-  } else if (is.matrix(img) || is.data.frame(img)) {
-    warning("Image input as matrices and dataframes will be deprecated in the next major release");
+  } else if (typeof(img) == "list" || length(img) > 1) {
+      return(format_images(img, size));
+  } else {
+      stop("Only base64 encoded strings and filepaths are supported for image input.")
   }
 
   if (size && nrow(img) > size && ncol(img) > size) {

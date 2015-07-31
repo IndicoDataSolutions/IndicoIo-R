@@ -17,7 +17,7 @@ test_that("Throws error on empty text", {
 
 test_that("Batch Text Tags API returns list of list of probabilities for the list of topics", {
   test_string_arr <- c("Hoping for sunshine tomorrow.", "Hoping for rain tomorrow.")
-  tags <- batch_text_tags(test_string_arr)
+  tags <- text_tags(test_string_arr)
 
   expect_is(tags, "list")
   expect_is(tags[[1]], "list")
@@ -28,7 +28,7 @@ test_that("Batch Text Tags API returns list of list of probabilities for the lis
 
 test_that("Batch Text Tags API keyword arguments function", {
   test_string_arr <- c("Hoping for sunshine tomorrow.", "Hoping for rain tomorrow.")
-  tags <- batch_text_tags(test_string_arr, top_n = 5)
+  tags <- text_tags(test_string_arr, top_n = 5)
 
   expect_is(tags, "list")
   expect_is(tags[[1]], "list")

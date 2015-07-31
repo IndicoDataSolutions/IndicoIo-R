@@ -54,7 +54,7 @@ test_that("Throws error on empty text", {
 
 test_that("Batch Language API returns list of list of probabilities for the list of languages", {
   test_string_arr <- c("Clearly an English sentence.", "Clearly not an English sentence.")
-  languages <- batch_language(test_string_arr)
+  languages <- language(test_string_arr)
 
   expect_is(languages, "list")
   expect_is(languages[[1]], "list")

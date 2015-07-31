@@ -25,7 +25,7 @@ Input should be in a list of list format, resizing will be attempted internally 
 performance, images should be already sized at 48x48 pixels.
 }
 \examples{
-img <- matrix(runif(48*48, 0, 1), nrow = 48)
+img <- "../tests/testthat/image/image.png"
 features <- facial_features(img)
 length(features)
 }

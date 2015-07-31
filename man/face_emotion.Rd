@@ -25,7 +25,7 @@ performance, images should be already sized at 48x48 pixels.
 }
 \examples{
 ## Example 1
-img <- matrix(runif(48*48, 0, 1), nrow = 48)
+img <- "../tests/testthat/image/image.png"
 emotion <- face_emotion(img)
 
 most.possible <- sort(unlist(emotion), decreasing = TRUE)[1:2]
@@ -33,18 +33,6 @@ cat(sprintf("Detected '\%s' emotion with probability \%0.4f.\\n",
             names(most.possible)[1], most.possible[1]))
 cat(sprintf("Next possible is '\%s' emotion with probability \%0.4f.",
             names(most.possible)[2], most.possible[2]))
-
-## Example 2
-# Reads PNG file
-file.face <- system.file("extdata", "face1.png", package = "indicoio")
-img <- readPNG(file.face)
-# Converts to grayscale
-img <- 0.2126 * img[, , 1] + 0.7152 * img[, , 2] + 0.0722 * img[, , 3]
-# Plots image
-plot(0:1, 0:1, xlab = "", ylab = "", axes = FALSE, col = "white")
-rasterImage(img, xleft = 0, ybottom = 0, xright = 1, ytop = 1)
-# Detects emotion
-face_emotion(img)
 }
 \seealso{
 \code{\link{facial_features}}, \code{\link{image_features}}

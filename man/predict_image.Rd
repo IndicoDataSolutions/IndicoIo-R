@@ -26,7 +26,7 @@ Given input text and a vector of API names, returns aggregated results of the ap
 }
 \examples{
 ## Example 1
-img <- matrix(runif(48*48, 0, 1), nrow = 48)
+img <- "../tests/testthat/image/image.png"
 emotion <- predict_image(img, apis=c("face_emotion"))
 }
 \keyword{API}

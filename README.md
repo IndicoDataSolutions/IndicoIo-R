@@ -131,5 +131,5 @@ Batch API
 Each `indicoio` function has a corresponding batch function for analyzing many examples with a single request. Simply pass in a list of inputs and receive a list of results in return.
 
 ```r
-sentiment_scores = batch_sentiment(c('Sample text', 'More sample text'), api_key='********'')
+sentiment_scores = sentiment(c('Sample text', 'More sample text'), api_key='********'')
 ```

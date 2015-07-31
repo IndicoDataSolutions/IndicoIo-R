@@ -32,7 +32,7 @@ Useful as a form of feature engineering for image oriented tasks.
 * For ideal performance, images should be square aspect ratio but non-square aspect ratios are supported as well.
 }
 \examples{
-img <- matrix(runif(64*64, 0, 1), nrow = 64)
+img <- "../tests/testthat/image/image.png"
 features <- image_features(img)
 
 length(features)

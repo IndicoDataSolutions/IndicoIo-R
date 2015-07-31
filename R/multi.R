@@ -75,30 +75,14 @@ predict_text <- function(text, apis = c("sentiment", "text_tags", "political", "
     results <- convert_results(results, apis)
 }
 
-#' Returns multiple batched text API results in a single request / response
-#'
-#' Given input list of texts and a vector of API names, returns aggregated results of the apis.
-#' @param text list of text for analysis
-#' @param apis vector / array of API names as strings
-#' @param api_key your personal indico API key
-#' @param cloud subdomain for indico private cloud
-#' @param ... additional arguments to passed to request
-#' @return map of apis as keys to their list results as values
-#' @keywords indico.io machine learning API multi API analysis
-#' @export
-#' @import httr rjson stringr
-#' @examples
-#' results <- predict_text("Thanks everyone for the birthday wishes!!
-#'                       It was a crazy few days ><", apis=c("sentiment", "political"))
-#' results
-#' cat(sprintf("This text has %s tonality",
-#'              ifelse(results[["sentiment"]] > 0.5, "positive", "negative")))
-#'
-batch_predict_text <- function(text, apis = c("sentiment", "text_tags", "political", "language"), api_key = FALSE, cloud = FALSE, ...) {
-    converted_apis <- filter_map(apis, TEXT_APIS)
-    results <- make_request(text, "apis", api_key, cloud, batch=TRUE, apis=converted_apis, ...)
-    results <- convert_results(results, apis)
+#'@export
+batch_predict_text <- function(text, ...) {
+    warning("The `batch_predict_text` function will be deprecated in the next major upgrade. " +
+      "Please call `predict_text` instead with the same arguments")
+    predict_text(text, ...)
 }
+
+
 
 #' Returns multiple image API results in a single request / response
 #'
@@ -114,7 +98,7 @@ batch_predict_text <- function(text, apis = c("sentiment", "text_tags", "politic
 #' @import httr rjson stringr
 #' @examples
 #' ## Example 1
-#' img <- matrix(runif(48*48, 0, 1), nrow = 48)
+#' img <- "../tests/testthat/image/image.png"
 #' emotion <- predict_image(img, apis=c("face_emotion"))
 #'
 predict_image <- function(img, apis = c("facial_features", "face_emotion", "image_features"), api_key = FALSE, cloud = FALSE, ...) {
@@ -123,37 +107,15 @@ predict_image <- function(img, apis = c("facial_features", "face_emotion", "imag
       stop("No image for analysis provided!")
     }
 
-    if (!is.character(img) && length(dim(img)) != 2) {
-      stop("Image should be represented by two-dimensional structure!")
-    }
-
     converted_apis <- filter_map(apis, IMAGE_APIS)
     img <- format_image(img, 128)
     results <- make_request(img, "apis", api_key, cloud, apis=converted_apis, ...)
     results <- convert_results(results, apis)
 }
 
-#' Returns multiple batched image API results in a single request / response
-#'
-#' Given a list of grayscale input images of faces, returns a map of returns aggregated results of the apis.
-#' @param imgs image data
-#' @param apis vector / array of API names as strings
-#' @param api_key your personal indico API key
-#' @param cloud subdomain for indico private cloud
-#' @param ... additional arguments to passed to request
-#' @return map of apis as keys to their results as values
-#' @keywords indico.io machine learning API multi API analysis
-#' @export
-#' @import httr rjson stringr
-#' @examples
-#' ## Example 1
-#' img_list = list()
-#' img_list[[1]] <- matrix(runif(48*48, 0, 1), nrow = 48)
-#' emotion <- batch_predict_image(img_list)
-#'
-batch_predict_image <- function(imgs, apis = c("facial_features", "face_emotion", "image_features"), api_key = FALSE, cloud = FALSE, ...) {
-    converted_apis <- filter_map(apis, IMAGE_APIS)
-    img_list <- format_images(imgs, 128)
-    results <- make_request(img_list, "apis", api_key, cloud, batch=TRUE, apis=converted_apis, ...)
-    results <- convert_results(results, apis)
+#'@export
+batch_predict_image <- function(text, ...) {
+    warning("The `batch_predict_image` function will be deprecated in the next major upgrade. " +
+      "Please call `predict_image` instead with the same arguments")
+    predict_image(text, ...)
 }

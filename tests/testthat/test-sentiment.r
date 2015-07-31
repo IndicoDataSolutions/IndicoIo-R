@@ -15,7 +15,7 @@ test_that("Throws error on empty text", {
 
 test_that("Batch Sentiment API returns a list of numerical value", {
   test_string_arr <- c("Worst song ever.", "Best song ever.")
-  emotion <- batch_sentiment(test_string_arr)
+  emotion <- sentiment(test_string_arr)
 
   expect_is(emotion, "list")
   expect_equal(length(emotion), length(test_string_arr))

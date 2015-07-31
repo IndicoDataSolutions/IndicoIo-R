@@ -2,7 +2,7 @@ context("Face Emotion Detection")
 
 test_that("Face Emotion Detection API returns proper answer", {
   fer_set <- c("Angry", "Sad", "Neutral", "Surprise", "Fear", "Happy")
-  test_image <- matrix(runif(64*64, 0, 1), nrow = 64)
+  test_image <- paste(readLines("image/base64.txt"), collapse=" ")
   emotion <- face_emotion(test_image)
 
   expect_is(emotion, "list")
@@ -12,7 +12,7 @@ test_that("Face Emotion Detection API returns proper answer", {
 
 test_that("FER alias returns proper answer", {
   fer_set <- c("Angry", "Sad", "Neutral", "Surprise", "Fear", "Happy")
-  test_image <- matrix(runif(64*64, 0, 1), nrow = 64)
+  test_image <- paste(readLines("image/base64.txt"), collapse=" ")
   emotion <- face_emotion(test_image)
 
   expect_is(emotion, "list")
@@ -28,8 +28,8 @@ test_that("Throws error on empty or wrong image", {
 test_that("Batch Face Emotion Detection API returns proper answer", {
   fer_set <- c("Angry", "Sad", "Neutral", "Surprise", "Fear", "Happy")
   test_image_list = list()
-  test_image_list[[1]] <- matrix(runif(64*64, 0, 1), nrow = 64)
-  emotion <- batch_face_emotion(test_image_list)
+  test_image_list[[1]] <- paste(readLines("image/base64.txt"), collapse=" ")
+  emotion <- face_emotion(test_image_list)
 
   expect_is(emotion, "list")
   expect_is(emotion[[1]], "list")
@@ -41,7 +41,7 @@ test_that("Batch Face Emotion Detection API returns proper answer", {
   fer_set <- c("Angry", "Sad", "Neutral", "Surprise", "Fear", "Happy")
   test_image_list = list()
   test_image_list[[1]] <-  system.file("extdata", "face1.png", package = "indicoio")
-  emotion <- batch_face_emotion(test_image_list)
+  emotion <- face_emotion(test_image_list)
   expect_is(emotion, "list")
   expect_is(emotion[[1]], "list")
   expect_more_than(emotion[[1]][["Happy"]], 0.49)
@@ -53,7 +53,7 @@ test_that("Batch Face Emotion Detection API with Base64 returns proper answer", 
   fer_set <- c("Angry", "Sad", "Neutral", "Surprise", "Fear", "Happy")
   test_image_list = list()
   test_image_list[[1]] <-  readFile(system.file("extdata", "base64.txt", package = "indicoio"))
-  emotion <- batch_face_emotion(test_image_list)
+  emotion <- face_emotion(test_image_list)
   expect_is(emotion, "list")
   expect_is(emotion[[1]], "list")
   expect_more_than(emotion[[1]][["Happy"]], 0.49)
