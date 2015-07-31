@@ -4,12 +4,14 @@
 \alias{format_images}
 \title{Returns a list of `data.frame`s given a list of input images}
 \usage{
-format_images(imgs, size)
+format_images(imgs, size, min_axis = FALSE)
 }
 \arguments{
 \item{imgs}{List of images to convert to a `string`s}
 
 \item{size}{Size of image to resize to}
+
+\item{min_axis}{Whether or not to keep aspect ratio}
 }
 \value{
 `String`s constructed from list of images as base64 encoded

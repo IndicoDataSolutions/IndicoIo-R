@@ -81,9 +81,10 @@ request_url <- function(cloud, api, batch, api_key, apis=NULL, ...) {
 #' Given an input image, returns a data.frame obj
 #' @param img Image to convert to a data.frame
 #' @param size Size of image to resize to
+#' @param min_axis Whether or not to keep aspect ratio '
 #' @return string base64 encoding of resized image
 #' @import httr rjson stringr base64enc EBImage
-format_image <- function(img, size) {
+format_image <- function(img, size, min_axis=FALSE) {
   # Converts to anonymous data.frame
   if (is.character(img)) {
     if (file.exists(img)) {
@@ -98,8 +99,27 @@ format_image <- function(img, size) {
       stop("Only base64 encoded strings and filepaths are supported for image input.")
   }
 
-  if (size && nrow(img) > size && ncol(img) > size) {
-    img <- resize(img, size, size)
+  # Check Aspect Ratio
+  width = ncol(img);
+  height = nrow(img);
+  ratio = width / height;
+  if (ratio >= 10 || ratio <= .1) {
+      warning("For best performance, we recommend images of apsect ratio less than 10:1");
+  }
+
+  if (width > size && height > size) {
+    if (min_axis) {
+        if (height > width) {
+            new_height <- size;
+            new_width <- ratio * size;
+        } else {
+            new_height <- 1 / ratio * size;
+            new_width <- size;
+        }
+        img <- resize(img, new_width, new_height)
+    } else {
+        img <- resize(img, size, size)
+    }
   }
 
   if (any(is.na(img))) {
@@ -115,12 +135,13 @@ format_image <- function(img, size) {
 #' Given a list of input images, returns a list of `string`s
 #' @param imgs List of images to convert to a `string`s
 #' @param size Size of image to resize to
+#' @param min_axis Whether or not to keep aspect ratio
 #' @return `String`s constructed from list of images as base64 encoded
 #' @import httr rjson stringr base64enc EBImage
-format_images <- function(imgs, size) {
+format_images <- function(imgs, size, min_axis=FALSE) {
   img_list = list()
   for (i in 1:length(imgs)) {
-    img <- format_image(imgs[[i]], size)
+    img <- format_image(imgs[[i]], size, min_axis)
     img_list[[i]] = img
   }
   img_list
