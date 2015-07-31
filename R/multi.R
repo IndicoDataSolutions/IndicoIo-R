@@ -75,6 +75,14 @@ predict_text <- function(text, apis = c("sentiment", "text_tags", "political", "
     results <- convert_results(results, apis)
 }
 
+#'@export
+batch_predict_text <- function(text, ...) {
+    warning("The `batch_predict_text` function will be deprecated in the next major upgrade. " +
+      "Please call `predict_text` instead with the same arguments")
+    predict_text(text, ...)
+}
+
+
 
 #' Returns multiple image API results in a single request / response
 #'
@@ -103,4 +111,11 @@ predict_image <- function(img, apis = c("facial_features", "face_emotion", "imag
     img <- format_image(img, 128)
     results <- make_request(img, "apis", api_key, cloud, apis=converted_apis, ...)
     results <- convert_results(results, apis)
+}
+
+#'@export
+batch_predict_image <- function(text, ...) {
+    warning("The `batch_predict_image` function will be deprecated in the next major upgrade. " +
+      "Please call `predict_image` instead with the same arguments")
+    predict_image(text, ...)
 }

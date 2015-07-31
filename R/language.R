@@ -27,3 +27,10 @@ language <- function(text, api_key = FALSE, cloud = FALSE, ...) {
 
   make_request(text, 'language', api_key, cloud, ...)
 }
+
+#'@export
+batch_predict_language <- function(text, ...) {
+    warning("The `batch_predict_language` function will be deprecated in the next major upgrade. " +
+      "Please call `predict_language` instead with the same arguments")
+    predict_language(text, ...)
+}

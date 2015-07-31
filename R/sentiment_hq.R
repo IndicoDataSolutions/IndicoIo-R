@@ -24,3 +24,9 @@ sentiment_hq <- function(text, api_key = FALSE, cloud = FALSE) {
 
   make_request(text, "sentimenthq", api_key, cloud)
 }
+#'@export
+batch_sentiment_hq <- function(text, ...) {
+    warning("The `batch_sentiment_hq` function will be deprecated in the next major upgrade. " +
+      "Please call `sentiment_hq` instead with the same arguments")
+    sentiment_hq(text, ...)
+}

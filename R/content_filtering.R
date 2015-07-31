@@ -28,3 +28,11 @@ content_filtering <- function(img, api_key = FALSE, cloud = FALSE, ...) {
   img <- format_image(img, 128)
   make_request(img, 'contentfiltering', api_key, cloud, ...)
 }
+
+
+#'@export
+batch_content_filtering <- function(text, ...) {
+    warning("The `batch_content_filtering` function will be deprecated in the next major upgrade. " +
+      "Please call `content_filtering` instead with the same arguments")
+    content_filtering(text, ...)
+}

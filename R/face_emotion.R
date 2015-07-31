@@ -34,4 +34,11 @@ face_emotion <- function(img, api_key = FALSE, cloud = FALSE, ...) {
   make_request(img, 'fer', api_key, cloud, ...)
 }
 
+#'@export
+batch_face_emotion <- function(text, ...) {
+    warning("The `batch_face_emotion` function will be deprecated in the next major upgrade. " +
+      "Please call `face_emotion` instead with the same arguments")
+    face_emotion(text, ...)
+}
+
 fer <- face_emotion

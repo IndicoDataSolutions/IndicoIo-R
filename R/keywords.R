@@ -26,3 +26,10 @@ keywords <- function(text, api_key = FALSE, cloud = FALSE, ...) {
 
   make_request(text, 'keywords', api_key, cloud, ...)
 }
+
+#'@export
+batch_keywords <- function(text, ...) {
+    warning("The `batch_keywords` function will be deprecated in the next major upgrade. " +
+      "Please call `keywords` instead with the same arguments")
+    keywords(text, ...)
+}

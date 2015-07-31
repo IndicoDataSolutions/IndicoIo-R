@@ -20,3 +20,10 @@ named_entities <- function(text, api_key = FALSE, cloud = FALSE, ...) {
 
   make_request(text, 'namedentities', api_key, cloud, ...)
 }
+
+#'@export
+batch_named_entities <- function(text, ...) {
+    warning("The `batch_named_entities` function will be deprecated in the next major upgrade. " +
+      "Please call `named_entities` instead with the same arguments")
+    named_entities(text, ...)
+}

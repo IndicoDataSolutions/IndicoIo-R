@@ -23,3 +23,9 @@ sentiment <- function(text, api_key = FALSE, cloud = FALSE, ...) {
 
   make_request(text, "sentiment", api_key, cloud, ...)
 }
+#'@export
+batch_sentiment <- function(text, ...) {
+    warning("The `batch_sentiment` function will be deprecated in the next major upgrade. " +
+      "Please call `sentiment` instead with the same arguments")
+    sentiment(text, ...)
+}

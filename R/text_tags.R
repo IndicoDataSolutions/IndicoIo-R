@@ -26,3 +26,9 @@ text_tags <- function(text, api_key = FALSE, cloud = FALSE, ...) {
 
   make_request(text, 'texttags', api_key, cloud, ...)
 }
+#'@export
+batch_text_tags <- function(text, ...) {
+    warning("The `batch_text_tags` function will be deprecated in the next major upgrade. " +
+      "Please call `text_tags` instead with the same arguments")
+    text_tags(text, ...)
+}

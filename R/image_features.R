@@ -34,3 +34,10 @@ image_features <- function(img, api_key = FALSE, cloud = FALSE, ...) {
   img <- format_image(img, 64)
   make_request(img, 'imagefeatures', api_key, cloud, ...)
 }
+
+#'@export
+batch_image_features <- function(text, ...) {
+    warning("The `batch_image_features` function will be deprecated in the next major upgrade. " +
+      "Please call `image_features` instead with the same arguments")
+    image_features(text, ...)
+}

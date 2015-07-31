@@ -30,3 +30,10 @@ political <- function(text, api_key = FALSE, cloud = FALSE, ...) {
 
   make_request(text, 'political', api_key, cloud, ...)
 }
+
+#'@export
+batch_political <- function(text, ...) {
+    warning("The `batch_political` function will be deprecated in the next major upgrade. " +
+      "Please call `political` instead with the same arguments")
+    political(text, ...)
+}

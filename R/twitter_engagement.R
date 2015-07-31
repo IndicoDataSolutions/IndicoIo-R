@@ -28,3 +28,10 @@ twitter_engagement <- function(text, api_key = FALSE, cloud = FALSE, ...) {
 
   make_request(text, 'twitterengagement', api_key, cloud, ...)
 }
+
+#'@export
+batch_twitter_engagement <- function(text, ...) {
+    warning("The `batch_twitter_engagement` function will be deprecated in the next major upgrade. " +
+      "Please call `twitter_engagement` instead with the same arguments")
+    twitter_engagement(text, ...)
+}
