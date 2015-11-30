@@ -29,5 +29,5 @@ personality <- function(text,  api_key = FALSE, cloud = FALSE, version = NULL, .
 batch_personality <- function(text, ...) {
     warning("The `batch_personality` function will be deprecated in the next major upgrade. " +
       "Please call `personality` instead with the same arguments")
-    kpersonality(text, ...)
+    personality(text, ...)
 }
