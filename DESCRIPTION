@@ -20,3 +20,4 @@ LazyData: true
 Suggests:
     testthat,
     jpeg
+RoxygenNote: 5.0.1

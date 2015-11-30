@@ -1,4 +1,4 @@
-TEXT_APIS <- c("sentiment", "text_tags", "political", "language", "twitter_engagement", "keywords", "named_entities", "myers_briggs")
+TEXT_APIS <- c("sentiment", "text_tags", "political", "language", "twitter_engagement", "keywords", "named_entities", "personality")
 IMAGE_APIS <- c("facial_features", "fer", "image_features", "content_filtering", "facial_localization")
 APIS_MAP <- list(
     sentiment="sentiment",
@@ -14,7 +14,7 @@ APIS_MAP <- list(
     keywords="keywords",
     named_entities="namedentities",
     content_filtering="contentfiltering",
-    myers_briggs="myers_briggs"
+    personality="personality"
 )
 
 api_types <- function() {
