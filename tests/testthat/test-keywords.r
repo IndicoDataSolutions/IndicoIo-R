@@ -24,9 +24,9 @@ test_that("Multilingual Keywords API returns list of scores for the list of keyw
 })
 
 test_that("Throws error on empty text", {
-  expect_error(language())
-  expect_error(language(""))
-  expect_error(language(" "))
+  expect_error(keywords())
+  expect_error(keywords(""))
+  expect_error(keywords(" "))
 })
 
 test_that("Batch Keywords API returns list of list of probabilities for the list of topics", {

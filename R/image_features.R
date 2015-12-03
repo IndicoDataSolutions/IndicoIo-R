@@ -25,7 +25,7 @@
 #' max(unlist(features))
 #' sum(unlist(features))
 #'
-image_features <- function(img,  api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+image_features <- function(img,  api_key = FALSE, cloud = FALSE, version = 3, ...) {
   # Checks parameters
   if (missing(img)) {
     stop("No image for analysis provided!")
