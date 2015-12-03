@@ -17,6 +17,7 @@ test_that("instantiate a collection and add data, and predict with text", {
   clearTests(collection)
 
   addData(collection, test_data)
+  addData(collection, list("I love my friends!", "extrovert"))
   train(collection)
   wait(collection)
   prediction <- predict(collection, "I love my friends!")

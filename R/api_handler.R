@@ -21,21 +21,22 @@ make_request <- function(data, api, api_key = FALSE, cloud = FALSE, version = NU
 
   batch <- typeof(data) == "list" || length(data) > 1
 
+  kwargs <- list(...)
+  if (api == "custom" && kwargs[['method']] == "add_data") {
+    batch <- typeof(data[[1]]) == "list" || length(data[[1]]) > 1
+  }
+
   # compose the proper request url
   url <- request_url(cloud, api, batch, api_key, version, ...)
 
   # configure request headers + body
   headers <- add_headers(.indicoio$header)
 
-  kwargs <- list(...)
   kwargs[["apis"]] <- NULL
   kwargs[["data"]] <- data
   body <- toJSON(kwargs)
 
-  if (api == "custom" && kwargs[['method']] == "add_data") {
 
-    batch <- typeof(data[[1]]) == "list" || length(data[[1]]) > 1
-  }
 
   response <- POST(url, accept_json(), headers, body = body)
 
