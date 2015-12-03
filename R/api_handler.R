@@ -10,7 +10,7 @@
 #' @return error or response extracted from the indico API response
 #' @keywords indico.io machine learning API
 #' @import httr rjson stringr
-make_request <- function(data, api,  api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+make_request <- function(data, api, api_key = FALSE, cloud = FALSE, version = NULL, ...) {
   # default to env variables and config file settings
   if (!is.character(cloud) && (cloud == FALSE)) {
     cloud <- .indicoio$cloud
@@ -21,16 +21,22 @@ make_request <- function(data, api,  api_key = FALSE, cloud = FALSE, version = N
 
   batch <- typeof(data) == "list" || length(data) > 1
 
+  kwargs <- list(...)
+  if (api == "custom" && kwargs[['method']] == "add_data") {
+    batch <- typeof(data[[1]]) == "list" || length(data[[1]]) > 1
+  }
+
   # compose the proper request url
   url <- request_url(cloud, api, batch, api_key, version, ...)
 
   # configure request headers + body
   headers <- add_headers(.indicoio$header)
 
-  kwargs <- list(...)
   kwargs[["apis"]] <- NULL
   kwargs[["data"]] <- data
   body <- toJSON(kwargs)
+
+
 
   response <- POST(url, accept_json(), headers, body = body)
 
@@ -62,7 +68,7 @@ make_request <- function(data, api,  api_key = FALSE, cloud = FALSE, version = N
 #' @param ... additional possible arguments to passed as url parameters
 #' @return url for API request
 #' @import httr rjson stringr
-request_url <- function(cloud, api, batch, api_key, version=NULL, apis=NULL, ...) {
+request_url <- function(cloud, api, batch, api_key, version=NULL, apis=NULL, method=NULL, ...) {
   # compose the proper request url
   if (cloud != FALSE && cloud != "") {
     private_cloud <- sprintf("https://%s.indico.domains/", cloud)
@@ -76,6 +82,7 @@ request_url <- function(cloud, api, batch, api_key, version=NULL, apis=NULL, ...
   }
   url <- str_c(base_url, api)
   url <- ifelse(batch, str_c(url, '/batch'), url)
+  url <- ifelse(is.null(method), url, str_c(url, '/', method))
   url <- str_c(url, '?key=', api_key)
 
   if (!is.null(apis)) {
@@ -108,7 +115,7 @@ format_image <- function(img, size, min_axis=FALSE) {
     if (file.exists(img)) {
       img <- readPNG(img)
     } else { # is already base64
-      result <- try(readPNG(base64decode(img)), silent=TRUE) 
+      result <- try(readPNG(base64decode(img)), silent=TRUE)
       if (class(result) == "try-error") {
         return(img) # likely a url
       } else {
