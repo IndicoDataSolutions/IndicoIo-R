@@ -1,4 +1,4 @@
-context("keywords")
+context("Keywords")
 
 test_that("Keywords API returns list of scores for the list of keywords", {
   test_string <- "Hoping for sunshine tomorrow."
