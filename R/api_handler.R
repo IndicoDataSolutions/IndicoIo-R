@@ -22,6 +22,7 @@ make_request <- function(data, api, version = NULL, apis = NULL, method = NULL, 
   batch <- typeof(data) == "list" || length(data) > 1
 
   kwargs <- list(...)
+
   if (api == "custom" && method == "add_data") {
     batch <- typeof(data[[1]]) == "list" || length(data[[1]]) > 1
   }
@@ -33,7 +34,9 @@ make_request <- function(data, api, version = NULL, apis = NULL, method = NULL, 
   headers <- add_headers(.indicoio$header)
   headers <- add_headers(c('X-ApiKey' = api_key))
   kwargs[["data"]] <- data
+  kwargs[["method"]] <- NULL
   body <- toJSON(kwargs)
+
   response <- POST(url, accept_json(), headers, body = body)
 
   x_warning <- response[["headers"]][["x-warning"]]

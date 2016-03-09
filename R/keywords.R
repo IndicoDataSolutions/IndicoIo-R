@@ -17,8 +17,10 @@
 #' cat(sprintf("Next possible is %s with a score %0.4f.",
 #'             names(most.possible)[2], most.possible[2]))
 #'
-keywords <- function(text, version = NULL, ...) {
-
+keywords <- function(text, version = 2, language="english", ...) {
+  if (language != "english") {
+      version = 1
+  }
   # Checks parameters
   if (missing(text) || str_trim(text) == "") {
     stop("No text for analysis provided!")

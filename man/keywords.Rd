@@ -4,7 +4,7 @@
 \alias{keywords}
 \title{Tags text with likely keywords}
 \usage{
-keywords(text, version = NULL, ...)
+keywords(text, version = 2, language = "english", ...)
 }
 \arguments{
 \item{text}{text for analysis}
