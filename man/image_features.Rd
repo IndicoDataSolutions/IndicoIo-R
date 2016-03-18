@@ -4,7 +4,7 @@
 \alias{image_features}
 \title{Detects image features}
 \usage{
-image_features(img, api_key = FALSE, cloud = FALSE, version = NULL, ...)
+image_features(img, api_key = FALSE, cloud = FALSE, version = 3, ...)
 }
 \arguments{
 \item{img}{image data}

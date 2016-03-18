@@ -2,12 +2,18 @@ Collection <- setClass(
     "Collection",
 
     slots = c(
-              name = "character"
-             )
+              name = "character",
+              domain = "ANY"
+             ),
+             # Set the default values for the slots. (optional)
+   prototype=list(
+           name="custom_collection",
+           domain=NULL
+           ),
     )
 
 setGeneric(name="addData",
-           def=function(collection_object, data, api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+           def=function(collection_object, data, api_key = FALSE, cloud = FALSE, version = NULL, domain = NULL, ...) {
               standardGeneric("addData")
            }
            )
@@ -38,7 +44,8 @@ setGeneric(name="addData",
 #' addData(collection, test_data)
 setMethod(f="addData",
           signature="Collection",
-          definition=function(collection_object, data, api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+          definition=function(collection_object, data, api_key = FALSE, cloud = FALSE, version = NULL, domain = NULL, ...) {
+                collection_object@domain <- ifelse(domain!=NULL, domain, collection_object@domain)
                 batch <- typeof(data[[1]]) == "list" || length(data[[1]]) > 1
                 if (batch) {
                     image_process <- function(data_pair) {
@@ -49,7 +56,7 @@ setMethod(f="addData",
                 } else {
                     data[1] = format_image(data[[1]], 48)
                 }
-                make_request(data, 'custom', api_key, cloud, version, collection = collection_object@name, method = "add_data", ...)
+                make_request(data, 'custom', api_key, cloud, version, collection = collection_object@name, method = "add_data", domain=collection_object@domain, ...)
           }
           )
 
@@ -169,19 +176,23 @@ setGeneric(name="wait",
 setMethod(f="wait",
           signature="Collection",
           definition=function(collection_object, interval = 1, timeout=60, api_key = FALSE, cloud = FALSE, version = NULL, ...) {
-                for (i in 1:ceiling(timeout/interval)) {
-                    if(info(collection_object, api_key, cloud, version, ...)[['status']] != "ready") {
-                        Sys.sleep(interval)
-                    } else {
-                        return(TRUE)
-                    }
-                }
-                stop('Timeout error in wait')
+            for (i in 1:ceiling(timeout/interval)) {
+              status <- info(collection_object, api_key, cloud, version, ...)[['status']]
+              if (status == "ready") {
+                  return(TRUE)
+              }
+              if (status != "training") {
+                  stop(collection_object@name + " failed with error: " + status)
+                  return(FALSE)
+              }
+              Sys.sleep(interval)
+            }
+            stop('Timeout error in wait')
           }
           )
 
 setGeneric(name="predict",
-           def=function(collection_object, data, api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+           def=function(collection_object, data, api_key = FALSE, cloud = FALSE, version = NULL, domain = NULL, ...) {
               standardGeneric("predict")
            }
            )
@@ -217,9 +228,10 @@ setGeneric(name="predict",
 #'             res[["extrovert"]])
 setMethod(f="predict",
           signature="Collection",
-          definition=function(collection_object, data, api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+          definition=function(collection_object, data, api_key = FALSE, cloud = FALSE, version = NULL, domain = NULL, ...) {
                 data = format_image(data, 48)
-                make_request(data, 'custom', api_key, cloud, version, collection = collection_object@name, method='predict', ...)
+                collection_object@domain <- ifelse(domain!=NULL, domain, collection_object@domain)
+                make_request(data, 'custom', api_key, cloud, version, collection = collection_object@name, method='predict', domain=  collection_object@domain, ...)
           }
           )
 

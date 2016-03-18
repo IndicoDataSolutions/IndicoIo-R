@@ -4,7 +4,8 @@
 \alias{request_url}
 \title{Returns the url for the proper indico API}
 \usage{
-request_url(cloud, api, batch, api_key, version = NULL, apis = NULL, ...)
+request_url(cloud, api, batch, api_key, version = NULL, apis = NULL,
+  method = NULL, ...)
 }
 \arguments{
 \item{cloud}{(optional) indico subdomain for private cloud}
