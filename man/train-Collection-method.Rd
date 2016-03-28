@@ -5,19 +5,18 @@
 \alias{train,Collection-method}
 \title{This is the basic training endpoint. Given an existing dataset this endpoint will train a model.}
 \usage{
-\S4method{train}{Collection}(collection_object, api_key = FALSE,
-  cloud = FALSE, version = NULL, ...)
+\S4method{train}{Collection}(collection_object, version = NULL, ...)
 }
 \arguments{
-\item{api_key}{your personal indico API key}
-
-\item{cloud}{subdomain for indico private cloud}
-
 \item{version}{for api version}
 
 \item{...}{additional arguments to passed to request}
 
 \item{collection}{the collection object for this model}
+
+\item{api_key}{your personal indico API key}
+
+\item{cloud}{subdomain for indico private cloud}
 }
 \value{
 List with available collections

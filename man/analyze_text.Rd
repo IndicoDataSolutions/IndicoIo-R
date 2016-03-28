@@ -5,17 +5,12 @@
 \title{Returns multiple text API results in a single request / response}
 \usage{
 analyze_text(text, apis = c("sentiment", "text_tags", "political", "language",
-  "keywords", "twitter_engagement", "named_entities"), api_key = FALSE,
-  cloud = FALSE, version = NULL, ...)
+  "keywords", "twitter_engagement", "named_entities"), version = NULL, ...)
 }
 \arguments{
 \item{text}{text for analysis}
 
 \item{apis}{vector / array of API names as strings}
-
-\item{api_key}{your personal indico API key}
-
-\item{cloud}{subdomain for indico private cloud}
 
 \item{version}{for api version}
 

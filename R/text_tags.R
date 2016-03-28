@@ -17,18 +17,12 @@
 #' cat(sprintf("Next possible is %s with probability %0.4f.",
 #'             names(most.possible)[2], most.possible[2]))
 #'
-text_tags <- function(text,  api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+text_tags <- function(text, version = NULL, ...) {
 
   # Checks parameters
   if (missing(text) || str_trim(text) == "") {
     stop("No text for analysis provided!")
   }
 
-  make_request(text, 'texttags', api_key, cloud, version, ...)
-}
-#'@export
-batch_text_tags <- function(text, ...) {
-    warning("The `batch_text_tags` function will be deprecated in the next major upgrade. " +
-      "Please call `text_tags` instead with the same arguments")
-    text_tags(text, ...)
+  make_request(text, 'texttags', version, ...)
 }

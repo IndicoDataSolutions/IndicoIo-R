@@ -15,22 +15,14 @@
 #' features <- facial_features(img)
 #' length(features)
 #'
-facial_features <- function(img,  api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+facial_features <- function(img, version = NULL, ...) {
   # Checks parameters
   if (missing(img)) {
     stop("No image for analysis provided!")
   }
 
   img <- format_image(img, 48)
-  make_request(img, 'facialfeatures', api_key, cloud, version, ...)
+  make_request(img, 'facialfeatures', version, ...)
 }
-
-#'@export
-batch_facial_features <- function(text, ...) {
-    warning("The `batch_facial_features` function will be deprecated in the next major upgrade. " +
-      "Please call `facial_features` instead with the same arguments")
-    facial_features(text, ...)
-}
-
 
 face_features <- facial_features

@@ -4,14 +4,10 @@
 \alias{facial_features}
 \title{Detects facial features}
 \usage{
-facial_features(img, api_key = FALSE, cloud = FALSE, version = NULL, ...)
+facial_features(img, version = NULL, ...)
 }
 \arguments{
 \item{img}{image data}
-
-\item{api_key}{your personal indico API key}
-
-\item{cloud}{subdomain for indico private cloud}
 
 \item{version}{for api version}
 

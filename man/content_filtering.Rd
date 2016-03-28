@@ -4,15 +4,10 @@
 \alias{content_filtering}
 \title{Detects NSFW content in an image}
 \usage{
-content_filtering(img, api_key = FALSE, cloud = FALSE, version = NULL,
-  ...)
+content_filtering(img, version = NULL, ...)
 }
 \arguments{
 \item{img}{image data}
-
-\item{api_key}{your personal indico API key}
-
-\item{cloud}{subdomain for indico private cloud}
 
 \item{version}{for api version}
 

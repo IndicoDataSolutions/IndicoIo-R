@@ -6,16 +6,12 @@
 \title{Block until the collection's model is completed training}
 \usage{
 \S4method{wait}{Collection}(collection_object, interval = 1, timeout = 60,
-  api_key = FALSE, cloud = FALSE, version = NULL, ...)
+  version = NULL, ...)
 }
 \arguments{
 \item{interval}{how reguarly to check if the model is done training}
 
 \item{timeout}{max time to wait before erroring}
-
-\item{api_key}{your personal indico API key}
-
-\item{cloud}{subdomain for indico private cloud}
 
 \item{version}{for api version}
 
@@ -24,6 +20,10 @@
 \item{collection}{the collection object for this model}
 
 \item{collection}{the collection object for this model}
+
+\item{api_key}{your personal indico API key}
+
+\item{cloud}{subdomain for indico private cloud}
 }
 \value{
 List with available collections

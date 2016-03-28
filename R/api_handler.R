@@ -10,7 +10,7 @@
 #' @return error or response extracted from the indico API response
 #' @keywords indico.io machine learning API
 #' @import httr rjson stringr
-make_request <- function(data, api, api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+make_request <- function(data, api, version = NULL, apis = NULL, method = NULL, api_key = FALSE, cloud = FALSE, ...) {
   # default to env variables and config file settings
   if (!is.character(cloud) && (cloud == FALSE)) {
     cloud <- .indicoio$cloud
@@ -22,22 +22,18 @@ make_request <- function(data, api, api_key = FALSE, cloud = FALSE, version = NU
   batch <- typeof(data) == "list" || length(data) > 1
 
   kwargs <- list(...)
-  if (api == "custom" && kwargs[['method']] == "add_data") {
+  if (api == "custom" && method == "add_data") {
     batch <- typeof(data[[1]]) == "list" || length(data[[1]]) > 1
   }
 
   # compose the proper request url
-  url <- request_url(cloud, api, batch, api_key, version, ...)
+  url <- request_url(cloud, api, batch, api_key, version, apis, method, ...)
 
   # configure request headers + body
   headers <- add_headers(.indicoio$header)
-
-  kwargs[["apis"]] <- NULL
+  headers <- add_headers(c('X-ApiKey' = api_key))
   kwargs[["data"]] <- data
   body <- toJSON(kwargs)
-
-
-
   response <- POST(url, accept_json(), headers, body = body)
 
   x_warning <- response[["headers"]][["x-warning"]]
@@ -46,6 +42,7 @@ make_request <- function(data, api, api_key = FALSE, cloud = FALSE, version = NU
   }
 
   stop_for_status(response)
+
 
   # Returns results
   answer <- content(response, as = "parsed", type = "application/json")
@@ -83,17 +80,19 @@ request_url <- function(cloud, api, batch, api_key, version=NULL, apis=NULL, met
   url <- str_c(base_url, api)
   url <- ifelse(batch, str_c(url, '/batch'), url)
   url <- ifelse(is.null(method), url, str_c(url, '/', method))
-  url <- str_c(url, '?key=', api_key)
 
+  config <- c()
   if (!is.null(apis)) {
-      url <- str_c(url, '&apis=')
-      url <- str_c(url, paste(apis, collapse=","))
+    config <- c(config, str_c("apis=", paste(apis, collapse=",")))
   }
 
   if (!is.null(version)) {
-      url <- str_c(url, '&version=', paste(version))
+    config <- c(config, str_c("version=", version))
   }
 
+  if (length(config) != 0) {
+      url <- str_c(url, "?", paste(config, collapse="&"))
+  }
   url
 }
 

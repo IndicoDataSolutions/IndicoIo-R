@@ -16,19 +16,12 @@
 #' cat(sprintf("This text has twitter engagement of %f",
 #'             engagement))
 #'
-twitter_engagement <- function(text,  api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+twitter_engagement <- function(text, version = NULL, ...) {
 
   # Checks parameters
   if (missing(text) || str_trim(text) == "") {
     stop("No text for analysis provided!")
   }
 
-  make_request(text, 'twitterengagement', api_key, cloud, version, ...)
-}
-
-#'@export
-batch_twitter_engagement <- function(text, ...) {
-    warning("The `batch_twitter_engagement` function will be deprecated in the next major upgrade. " +
-      "Please call `twitter_engagement` instead with the same arguments")
-    twitter_engagement(text, ...)
+  make_request(text, 'twitterengagement', version, ...)
 }

@@ -4,14 +4,10 @@
 \alias{named_entities}
 \title{Named entities with likely categories}
 \usage{
-named_entities(text, api_key = FALSE, cloud = FALSE, version = NULL, ...)
+named_entities(text, version = NULL, ...)
 }
 \arguments{
 \item{text}{text for analysis}
-
-\item{api_key}{your personal indico API key}
-
-\item{cloud}{subdomain for indico private cloud}
 
 \item{version}{for api version}
 

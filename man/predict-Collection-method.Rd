@@ -6,8 +6,8 @@
 \title{This is the prediction endpoint. This will be the primary interaction point for all predictive
  analysis.}
 \usage{
-\S4method{predict}{Collection}(collection_object, data, api_key = FALSE,
-  cloud = FALSE, version = NULL, domain = NULL, ...)
+\S4method{predict}{Collection}(collection_object, data, version = NULL,
+  domain = NULL, ...)
 }
 \arguments{
 \item{data}{the text example being provided to the API. As a general rule, the data should be as
@@ -15,10 +15,6 @@ similar to the examples given to the train function (above) as possible. Because
 in different domains is used very differently the accuracy will generally drop as the
 difference between this text and the training text increases. Base64 encoded image data, image urls, and
 text content are all valid.}
-
-\item{api_key}{your personal indico API key}
-
-\item{cloud}{subdomain for indico private cloud}
 
 \item{version}{for api version}
 
@@ -29,6 +25,10 @@ to use behind the scenes to train your model.  One of {"standard", "topics"}}
 
 \item{collection}{the collection object for this model
 the response format for the given label will match the format of the training examples}
+
+\item{api_key}{your personal indico API key}
+
+\item{cloud}{subdomain for indico private cloud}
 }
 \value{
 List with available collections

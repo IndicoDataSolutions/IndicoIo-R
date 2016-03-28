@@ -4,19 +4,19 @@
 \alias{make_request}
 \title{Returns a response from the indico API endpoint}
 \usage{
-make_request(data, api, api_key = FALSE, cloud = FALSE, version = NULL,
-  ...)
+make_request(data, api, version = NULL, apis = NULL, method = NULL,
+  api_key = FALSE, cloud = FALSE, ...)
 }
 \arguments{
 \item{data}{data for analysis}
 
 \item{api}{api to call}
 
+\item{version}{for api version}
+
 \item{api_key}{your personal indico API key}
 
 \item{cloud}{subdomain for indico private cloud}
-
-\item{version}{for api version}
 
 \item{...}{additional arguments to passed to request}
 }

@@ -4,15 +4,10 @@
 \alias{image_recognition}
 \title{Detects image recognition}
 \usage{
-image_recognition(img, api_key = FALSE, cloud = FALSE, version = NULL,
-  ...)
+image_recognition(img, version = NULL, ...)
 }
 \arguments{
 \item{img}{image data}
-
-\item{api_key}{your personal indico API key}
-
-\item{cloud}{subdomain for indico private cloud}
 
 \item{version}{for api version}
 

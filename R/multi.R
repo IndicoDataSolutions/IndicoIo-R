@@ -68,7 +68,7 @@ convert_results <- function(results, apis) {
 #' @param version - api version
 #' @param ... additional arguments to passed to request
 #' @return nested associated array of correlation strengths
-intersections <- function(data, apis = FALSE,  api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+intersections <- function(data, apis=NULL, version = NULL, ...) {
 
     if (length(apis) != 2) {
         stop("Argument 'apis' must be of length 2")
@@ -80,7 +80,7 @@ intersections <- function(data, apis = FALSE,  api_key = FALSE, cloud = FALSE, v
         stop("Both 'apis' must accept the same kind of input to use the intersections API")
     }
 
-    results <- make_request(data, "apis/intersections", api_key, cloud, apis=apis, ...)
+    results <- make_request(data, "apis/intersections", version=version, apis=apis, ...)
 }
 
 
@@ -101,24 +101,16 @@ intersections <- function(data, apis = FALSE,  api_key = FALSE, cloud = FALSE, v
 #' cat(sprintf("This text has %s tonality",
 #'              ifelse(results[["sentiment"]] > 0.5, "positive", "negative")))
 #'
-analyze_text <- function(text, apis = c("sentiment", "text_tags", "political", "language", "keywords", "twitter_engagement", "named_entities"),  api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+analyze_text <- function(text, apis = c("sentiment", "text_tags", "political", "language", "keywords", "twitter_engagement", "named_entities"), version = NULL, ...) {
     # Checks parameters
     if (missing(text) || str_trim(text) == "") {
         stop("No text for analysis provided!")
     }
     apis <- filter_apis(apis, TEXT_APIS)
 
-    results <- make_request(text, "apis", api_key, cloud, apis=apis, ...)
+    results <- make_request(text, "apis", version=version, apis=apis, ...)
     results <- convert_results(results, apis)
 }
-
-#'@export
-batch_analyze_text <- function(text, ...) {
-    warning("The `batch_analyze_text` function will be deprecated in the next major upgrade. " +
-      "Please call `analyze_text` instead with the same arguments")
-    analyze_text(text, ...)
-}
-
 
 
 #' Returns multiple image API results in a single request / response
@@ -135,7 +127,7 @@ batch_analyze_text <- function(text, ...) {
 #' img <- "../tests/testthat/image/image.png"
 #' emotion <- analyze_image(img, apis=c("fer"))
 #'
-analyze_image <- function(img, apis = c("facial_features", "fer", "image_features", "facial_localization", "content_filtering"),  api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+analyze_image <- function(img, apis = c("facial_features", "fer", "image_features", "facial_localization", "content_filtering"), version = NULL, ...) {
     # Checks parameters
     if (missing(img)) {
       stop("No image for analysis provided!")
@@ -143,13 +135,6 @@ analyze_image <- function(img, apis = c("facial_features", "fer", "image_feature
 
     apis <- filter_apis(apis, IMAGE_APIS)
     img <- format_image(img, 128)
-    results <- make_request(img, "apis", api_key, cloud, apis=apis, ...)
+    results <- make_request(img, "apis", version=version, apis=apis, ...)
     results <- convert_results(results, apis)
-}
-
-#'@export
-batch_analyze_image <- function(text, ...) {
-    warning("The `batch_analyze_image` function will be deprecated in the next major upgrade. " +
-      "Please call `analyze_image` instead with the same arguments")
-    analyze_image(text, ...)
 }

@@ -25,19 +25,12 @@
 #' max(unlist(features))
 #' sum(unlist(features))
 #'
-image_features <- function(img,  api_key = FALSE, cloud = FALSE, version = 3, ...) {
+image_features <- function(img, version = 3, ...) {
   # Checks parameters
   if (missing(img)) {
     stop("No image for analysis provided!")
   }
 
   img <- format_image(img, 512, TRUE)
-  make_request(img, 'imagefeatures', api_key, cloud, version, ...)
-}
-
-#'@export
-batch_image_features <- function(text, ...) {
-    warning("The `batch_image_features` function will be deprecated in the next major upgrade. " +
-      "Please call `image_features` instead with the same arguments")
-    image_features(text, ...)
+  make_request(img, 'imagefeatures',  version, ...)
 }

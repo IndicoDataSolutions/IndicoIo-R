@@ -14,7 +14,7 @@
 #' img <- "../tests/testthat/image/image.png"
 #' emotion <- facial_localization(img)
 #'
-facial_localization <- function(img,  api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+facial_localization <- function(img,  version = NULL, ...) {
   # Checks parameters
   if (missing(img)) {
     stop("No image for analysis provided!")
@@ -23,5 +23,5 @@ facial_localization <- function(img,  api_key = FALSE, cloud = FALSE, version = 
   options <- list(...)
   img <- format_image(img, FALSE, FALSE)
 
-  make_request(img, 'faciallocalization', api_key, cloud, version, ...)
+  make_request(img, 'faciallocalization', version, ...)
 }

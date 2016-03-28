@@ -4,18 +4,18 @@
 \alias{face_emotion}
 \title{Detects face emotion}
 \usage{
-face_emotion(img, api_key = FALSE, cloud = FALSE, version = NULL, ...)
+face_emotion(img, version = NULL, ...)
 }
 \arguments{
 \item{img}{image data}
 
-\item{api_key}{your personal indico API key}
-
-\item{cloud}{subdomain for indico private cloud}
-
 \item{version}{for api version}
 
 \item{...}{additional arguments to passed to request}
+
+\item{api_key}{your personal indico API key}
+
+\item{cloud}{subdomain for indico private cloud}
 }
 \value{
 List with face emotions probability pairs

@@ -18,19 +18,12 @@
 #' cat(sprintf("Next possible is %s with probability %0.4f.",
 #'             names(most.possible)[2], most.possible[2]))
 #'
-language <- function(text,  api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+language <- function(text, version = NULL, ...) {
 
   # Checks parameters
   if (missing(text) || str_trim(text) == "") {
     stop("No text for analysis provided!")
   }
 
-  make_request(text, 'language', api_key, cloud, version, ...)
-}
-
-#'@export
-batch_predict_language <- function(text, ...) {
-    warning("The `batch_predict_language` function will be deprecated in the next major upgrade. " +
-      "Please call `predict_language` instead with the same arguments")
-    predict_language(text, ...)
+  make_request(text, 'language', version, ...)
 }

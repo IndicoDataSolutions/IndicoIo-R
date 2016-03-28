@@ -4,14 +4,10 @@
 \alias{image_features}
 \title{Detects image features}
 \usage{
-image_features(img, api_key = FALSE, cloud = FALSE, version = 3, ...)
+image_features(img, version = 3, ...)
 }
 \arguments{
 \item{img}{image data}
-
-\item{api_key}{your personal indico API key}
-
-\item{cloud}{subdomain for indico private cloud}
 
 \item{version}{for api version}
 

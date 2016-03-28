@@ -4,14 +4,10 @@
 \alias{places}
 \title{Finds the names of places in the input text}
 \usage{
-places(text, api_key = FALSE, cloud = FALSE, version = NULL, ...)
+places(text, version = NULL, ...)
 }
 \arguments{
 \item{text}{text for analysis}
-
-\item{api_key}{your personal indico API key}
-
-\item{cloud}{subdomain for indico private cloud}
 
 \item{version}{for api version}
 

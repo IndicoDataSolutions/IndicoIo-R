@@ -4,14 +4,10 @@
 \alias{personality}
 \title{Predicts a score between 0 and 1 for 4 personality traits for the author of the texts}
 \usage{
-personality(text, api_key = FALSE, cloud = FALSE, version = NULL, ...)
+personality(text, version = NULL, ...)
 }
 \arguments{
 \item{text}{text for analysis}
-
-\item{api_key}{your personal indico API key}
-
-\item{cloud}{subdomain for indico private cloud}
 
 \item{version}{for api version}
 

@@ -1,6 +1,6 @@
 Package: indicoio
 Title: A simple R Wrapper for the indico set of APIs - http://indico.io
-Version: 0.8.3
+Version: 0.9.0
 Author: Alexander Gedranovich <gedranovich@gmail.com>
 Maintainer: Madison May <madison@indico.io>
 Description: R-based client for Machine Learning APIs at http://indico.io.

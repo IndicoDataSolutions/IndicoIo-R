@@ -1,6 +1,6 @@
 #' @return Collection object
 #' @import httr rjson stringr
-#' A class description
+#' @title A class description
 #'
 #' @export Collection
 #' @exportClass Collection
@@ -19,7 +19,7 @@ Collection <- setClass(
     )
 
 setGeneric(name="addData",
-           def=function(collection_object, data, api_key = FALSE, cloud = FALSE, version = NULL, domain = NULL, ...) {
+           def=function(collection_object, data, version = NULL, domain = NULL, ...) {
               standardGeneric("addData")
            }
            )
@@ -50,7 +50,7 @@ setGeneric(name="addData",
 #' addData(collection, test_data)
 setMethod(f="addData",
           signature="Collection",
-          definition=function(collection_object, data, api_key = FALSE, cloud = FALSE, version = NULL, domain = NULL, ...) {
+          definition=function(collection_object, data, version = NULL, domain = NULL, ...) {
                 collection_object@domain <- ifelse(domain!=NULL, domain, collection_object@domain)
                 batch <- typeof(data[[1]]) == "list" || length(data[[1]]) > 1
                 if (batch) {
@@ -62,12 +62,12 @@ setMethod(f="addData",
                 } else {
                     data[1] = format_image(data[[1]], 48)
                 }
-                make_request(data, 'custom', api_key, cloud, version, collection = collection_object@name, method = "add_data", domain=collection_object@domain, ...)
+                make_request(data, 'custom', version=version, collection = collection_object@name, method = "add_data", domain=collection_object@domain, ...)
           }
           )
 
 setGeneric(name="clear",
-           def=function(collection_object, data, api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+           def=function(collection_object, data, version = NULL, ...) {
               standardGeneric("clear")
            }
            )
@@ -90,13 +90,13 @@ setGeneric(name="clear",
 #' clear(collection)
 setMethod(f="clear",
           signature="Collection",
-          definition=function(collection_object, api_key = FALSE, cloud = FALSE, version = NULL, ...) {
-              make_request(NULL, 'custom', api_key, cloud, version, collection = collection_object@name, method = "clear_collection", ...)
+          definition=function(collection_object, version = NULL, ...) {
+              make_request(NULL, 'custom', version=version, collection = collection_object@name, method = "clear_collection", ...)
           }
           )
 
 setGeneric(name="train",
-           def=function(collection_object, api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+           def=function(collection_object, version = NULL, ...) {
               standardGeneric("train")
            }
            )
@@ -116,13 +116,13 @@ setGeneric(name="train",
 #' train(collection)
 setMethod(f="train",
           signature="Collection",
-          definition=function(collection_object, api_key = FALSE, cloud = FALSE, version = NULL, ...) {
-              make_request(NULL, 'custom', api_key, cloud, version, collection = collection_object@name, method = "train", ...)
+          definition=function(collection_object, version = NULL, ...) {
+              make_request(NULL, 'custom', version=version, collection = collection_object@name, method = "train", ...)
           }
           )
 
 setGeneric(name="info",
-           def=function(collection_object, api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+           def=function(collection_object, version = NULL, ...) {
               standardGeneric("info")
            }
            )
@@ -146,14 +146,14 @@ setGeneric(name="info",
 #'             status[["number_of_examples"]]))
 setMethod(f="info",
           signature="Collection",
-          definition=function(collection_object, api_key = FALSE, cloud = FALSE, version = NULL, ...) {
-              collections <- collections(api_key, cloud, version, ...)
-              collections[[collection_object@name]]
+          definition=function(collection_object, version = NULL, ...) {
+              collections_info <- collections(version=version, ...)
+              collections_info[[collection_object@name]]
           }
           )
 
 setGeneric(name="wait",
-           def=function(collection_object, interval = 1, timeout=60, api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+           def=function(collection_object, interval = 1, timeout=60, version = NULL, ...) {
               standardGeneric("wait")
            }
            )
@@ -181,9 +181,9 @@ setGeneric(name="wait",
 #' wait(collection)
 setMethod(f="wait",
           signature="Collection",
-          definition=function(collection_object, interval = 1, timeout=60, api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+          definition=function(collection_object, interval = 1, timeout=60, version = NULL, ...) {
             for (i in 1:ceiling(timeout/interval)) {
-              status <- info(collection_object, api_key, cloud, version, ...)[['status']]
+              status <- info(collection_object, version=version, ...)[['status']]
               if (status == "ready") {
                   return(TRUE)
               }
@@ -198,7 +198,7 @@ setMethod(f="wait",
           )
 
 setGeneric(name="predict",
-           def=function(collection_object, data, api_key = FALSE, cloud = FALSE, version = NULL, domain = NULL, ...) {
+           def=function(collection_object, data, version = NULL, domain = NULL, ...) {
               standardGeneric("predict")
            }
            )
@@ -234,15 +234,15 @@ setGeneric(name="predict",
 #'             res[["extrovert"]]))
 setMethod(f="predict",
           signature="Collection",
-          definition=function(collection_object, data, api_key = FALSE, cloud = FALSE, version = NULL, domain = NULL, ...) {
+          definition=function(collection_object, data, version = NULL, domain = NULL, ...) {
                 data = format_image(data, 48)
                 collection_object@domain <- ifelse(domain!=NULL, domain, collection_object@domain)
-                make_request(data, 'custom', api_key, cloud, version, collection = collection_object@name, method='predict', domain=  collection_object@domain, ...)
+                make_request(data, 'custom', version=version, collection = collection_object@name, method='predict', domain= collection_object@domain, ...)
           }
           )
 
 setGeneric(name="remove_example",
-           def=function(collection_object, data, api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+           def=function(collection_object, data, version = NULL, ...) {
               standardGeneric("remove_example")
            }
            )
@@ -271,9 +271,9 @@ setGeneric(name="remove_example",
 #' remove_example(collection, test_data[[1]][[1]])
 setMethod(f="remove_example",
           signature="Collection",
-          definition=function(collection_object, data, api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+          definition=function(collection_object, data, version = NULL, ...) {
                 data = format_image(data, 48)
-                make_request(data, 'custom', api_key, cloud, version, collection = collection_object@name, method='remove_example', ...)
+                make_request(data, 'custom', version=version, collection = collection_object@name, method='remove_example', ...)
           }
           )
 
@@ -292,6 +292,6 @@ setMethod(f="remove_example",
 #' collections <- collections()
 #' cat(sprintf("There are currently %i collections",
 #'             length(collections)))
-collections <- function(api_key = FALSE, cloud = FALSE, version = NULL, ...) {
-  make_request(NULL, 'custom', api_key, cloud, version, method = "collections", ...)
+collections <- function(version = NULL, ...) {
+  make_request("", 'custom', version=version, method="collections", ...)
 }
