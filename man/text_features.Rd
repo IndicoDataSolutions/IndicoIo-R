@@ -4,14 +4,10 @@
 \alias{text_features}
 \title{Transforms text inputs into numerical features}
 \usage{
-text_features(text, api_key = FALSE, cloud = FALSE, version = NULL, ...)
+text_features(text, version = NULL, ...)
 }
 \arguments{
 \item{text}{text for analysis}
-
-\item{api_key}{your personal indico API key}
-
-\item{cloud}{subdomain for indico private cloud}
 
 \item{version}{for api version}
 

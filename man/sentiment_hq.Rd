@@ -4,14 +4,10 @@
 \alias{sentiment_hq}
 \title{Returns a scalar estimate of the sentiment of the text}
 \usage{
-sentiment_hq(text, api_key = FALSE, cloud = FALSE, version = NULL, ...)
+sentiment_hq(text, version = NULL, ...)
 }
 \arguments{
 \item{text}{text for analysis}
-
-\item{api_key}{your personal indico API key}
-
-\item{cloud}{subdomain for indico private cloud}
 
 \item{version}{for api version}
 

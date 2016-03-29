@@ -5,19 +5,18 @@
 \alias{info,Collection-method}
 \title{Return the current state of the model associated with a given collection}
 \usage{
-\S4method{info}{Collection}(collection_object, api_key = FALSE,
-  cloud = FALSE, version = NULL, ...)
+\S4method{info}{Collection}(collection_object, version = NULL, ...)
 }
 \arguments{
-\item{api_key}{your personal indico API key}
-
-\item{cloud}{subdomain for indico private cloud}
-
 \item{version}{for api version}
 
 \item{...}{additional arguments to passed to request}
 
 \item{collection}{the collection object for this model}
+
+\item{api_key}{your personal indico API key}
+
+\item{cloud}{subdomain for indico private cloud}
 }
 \value{
 List with available collections

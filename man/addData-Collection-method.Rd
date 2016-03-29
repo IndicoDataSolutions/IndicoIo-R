@@ -6,8 +6,8 @@
 \title{This is the basic training endpoint. Given a piece of text and a score, either categorical
 or numeric, this endpoint will train a new model given the additional piece of information.}
 \usage{
-\S4method{addData}{Collection}(collection_object, data, api_key = FALSE,
-  cloud = FALSE, version = NULL, domain = NULL, ...)
+\S4method{addData}{Collection}(collection_object, data, version = NULL,
+  domain = NULL, ...)
 }
 \arguments{
 \item{data}{the text and collection/score associated with it. The length of the text (string) should ideally
@@ -18,15 +18,15 @@ can be a string or float. This is the variable associated with the text. This ca
 (the tag associated with the post) or numeric (the number of Facebook shares the post
 received). However it can only be one or another within a given label.}
 
-\item{api_key}{your personal indico API key}
-
-\item{cloud}{subdomain for indico private cloud}
-
 \item{version}{for api version}
 
 \item{...}{additional arguments to passed to request}
 
 \item{collection}{the collection object for this model}
+
+\item{api_key}{your personal indico API key}
+
+\item{cloud}{subdomain for indico private cloud}
 }
 \value{
 List with available collections

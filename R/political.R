@@ -22,14 +22,14 @@
 #' cat(sprintf("This text is most like %s and least like %s",
 #'             most.like, least.like))
 #'
-political <- function(text,  api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+political <- function(text, version = NULL, ...) {
 
   # Checks parameters
   if (missing(text) || str_trim(text) == "") {
     stop("No text for analysis provided!")
   }
 
-  make_request(text, 'political', api_key, cloud, version, ...)
+  make_request(text, 'political', version, ...)
 }
 
 #'@export

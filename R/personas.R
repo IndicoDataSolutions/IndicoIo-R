@@ -15,19 +15,12 @@
 #' cat(sprintf("Detected %s persona with probability %0.4f.\n",
 #'             names(most.possible)[1], most.possible[1]))
 #'
-personas <- function(text,  api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+personas <- function(text, version = NULL, ...) {
 
   # Checks parameters
   if (missing(text) || str_trim(text) == "") {
     stop("No text for analysis provided!")
   }
 
-  make_request(text, 'personality', api_key, cloud, version, persona = TRUE, ...)
-}
-
-#'@export
-batch_personas <- function(text, ...) {
-    warning("The `batch_personas` function will be deprecated in the next major upgrade. " +
-      "Please call `personas` instead with the same arguments")
-    personas(text, ...)
+  make_request(text, 'personality', version, persona = TRUE, ...)
 }

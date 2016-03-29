@@ -25,7 +25,7 @@
 #'             names(most.possible)[2], most.possible[2]))
 #'
 #'
-face_emotion <- function(img,  api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+face_emotion <- function(img, version = NULL, ...) {
   # Checks parameters
   if (missing(img)) {
     stop("No image for analysis provided!")
@@ -36,14 +36,7 @@ face_emotion <- function(img,  api_key = FALSE, cloud = FALSE, version = NULL, .
       if(exists("detect", options) && options["detect"]==TRUE) 48 else FALSE
   )
 
-  make_request(img, 'fer', api_key, cloud, version, ...)
-}
-
-#'@export
-batch_face_emotion <- function(text, ...) {
-    warning("The `batch_face_emotion` function will be deprecated in the next major upgrade. " +
-      "Please call `face_emotion` instead with the same arguments")
-    face_emotion(text, ...)
+  make_request(img, 'fer', version, ...)
 }
 
 fer <- face_emotion

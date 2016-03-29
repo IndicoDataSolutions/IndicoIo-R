@@ -4,15 +4,10 @@
 \alias{relevance}
 \title{Determines how relevant a query string is to a given document}
 \usage{
-relevance(text, queries, api_key = FALSE, cloud = FALSE, version = NULL,
-  ...)
+relevance(text, queries, version = NULL, ...)
 }
 \arguments{
 \item{text}{text for analysis}
-
-\item{api_key}{your personal indico API key}
-
-\item{cloud}{subdomain for indico private cloud}
 
 \item{version}{for api version}
 

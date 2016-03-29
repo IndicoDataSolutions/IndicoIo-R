@@ -19,20 +19,12 @@
 #' img <- "../tests/testthat/image/image.png"
 #' probabilities <- content_filtering(img)
 #'
-content_filtering <- function(img,  api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+content_filtering <- function(img, version=NULL, ...) {
   # Checks parameters
   if (missing(img)) {
     stop("No image for analysis provided!")
   }
 
   img <- format_image(img, 128, TRUE)
-  make_request(img, 'contentfiltering', api_key, cloud, version, ...)
-}
-
-
-#'@export
-batch_content_filtering <- function(text, ...) {
-    warning("The `batch_content_filtering` function will be deprecated in the next major upgrade. " +
-      "Please call `content_filtering` instead with the same arguments")
-    content_filtering(text, ...)
+  make_request(img, 'contentfiltering', version, ...)
 }

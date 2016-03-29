@@ -2,20 +2,20 @@ context("Utility function tests")
 
 test_that("request_url functions as expected", {
   url <- request_url(cloud = FALSE, api = "sentiment", batch = FALSE, api_key = "key")
-  expect_equal(url, "https://apiv2.indico.io/sentiment?key=key")
+  expect_equal(url, "https://apiv2.indico.io/sentiment")
 
   url <- request_url(cloud = FALSE, api = "sentiment", batch = TRUE, api_key = "key")
-  expect_equal(url, "https://apiv2.indico.io/sentiment/batch?key=key")
+  expect_equal(url, "https://apiv2.indico.io/sentiment/batch")
 
   url <- request_url(cloud = FALSE, api = "political", batch = TRUE, api_key = "key")
-  expect_equal(url, "https://apiv2.indico.io/political/batch?key=key")
+  expect_equal(url, "https://apiv2.indico.io/political/batch")
 
   url <- request_url(cloud = "testing", api = "political", batch = TRUE, api_key = "key")
-  expect_equal(url, "https://testing.indico.domains/political/batch?key=key")
+  expect_equal(url, "https://testing.indico.domains/political/batch")
 
   .indicoio$private_cloud = "https://%s.indico.com/"
   url <- request_url(cloud = "testing", api = "political", batch = TRUE, api_key = "key")
-  expect_equal(url, "https://testing.indico.domains/political/batch?key=key")
+  expect_equal(url, "https://testing.indico.domains/political/batch")
 })
 
 test_that("format_image functions as expected", {

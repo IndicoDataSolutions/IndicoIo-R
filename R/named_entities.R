@@ -11,19 +11,12 @@
 #' entities <- named_entities("London Undergroud's boss Mike Brown warned of the strike...")
 #' entities
 
-named_entities <- function(text,  api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+named_entities <- function(text, version = NULL, ...) {
 
   # Checks parameters
   if (missing(text) || str_trim(text) == "") {
     stop("No text for analysis provided!")
   }
 
-  make_request(text, 'namedentities', api_key, cloud, version, ...)
-}
-
-#'@export
-batch_named_entities <- function(text, ...) {
-    warning("The `batch_named_entities` function will be deprecated in the next major upgrade. " +
-      "Please call `named_entities` instead with the same arguments")
-    named_entities(text, ...)
+  make_request(text, 'namedentities', version, ...)
 }

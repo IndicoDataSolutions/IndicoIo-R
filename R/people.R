@@ -11,12 +11,12 @@
 #' result <- people("Barack Obama is scheduled to give a talk next Saturday at the White House.")
 #' cat(sprintf("%s is mentioned in the input text", result[0]['text']))
 #'
-people <- function(text,  api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+people <- function(text, version = NULL, ...) {
 
   # Checks parameters
   if (missing(text) || str_trim(text) == "") {
     stop("No text for analysis provided!")
   }
 
-  make_request(text, 'people', api_key, cloud, version, ...)
+  make_request(text, 'people', version, ...)
 }

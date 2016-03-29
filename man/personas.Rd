@@ -4,14 +4,10 @@
 \alias{personas}
 \title{Predicts the likelyhood the author of the text is 16 different personas}
 \usage{
-personas(text, api_key = FALSE, cloud = FALSE, version = NULL, ...)
+personas(text, version = NULL, ...)
 }
 \arguments{
 \item{text}{text for analysis}
-
-\item{api_key}{your personal indico API key}
-
-\item{cloud}{subdomain for indico private cloud}
 
 \item{version}{for api version}
 

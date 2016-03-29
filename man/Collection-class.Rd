@@ -5,7 +5,7 @@
 \alias{Collection}
 \alias{Collection-class}
 \title{A class description}
-\description{
-A class description
+\value{
+Collection object
 }
 

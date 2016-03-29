@@ -11,12 +11,12 @@
 #' result <- places("Lets all go to Virginia Beach before it gets too cold to wander outside.)
 #' cat(sprintf("%s is mentioned in the input text" % result[0]['text']))
 #'
-places <- function(text,  api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+places <- function(text, version = NULL, ...) {
 
   # Checks parameters
   if (missing(text) || str_trim(text) == "") {
     stop("No text for analysis provided!")
   }
 
-  make_request(text, 'places', api_key, cloud, version, ...)
+  make_request(text, 'places', version, ...)
 }

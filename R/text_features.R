@@ -12,12 +12,12 @@
 #' length(features) # 300
 #'
 #'@export
-text_features <- function(text,  api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+text_features <- function(text, version = NULL, ...) {
 
   # Checks parameters
   if (missing(text) || str_trim(text) == "") {
     stop("No text for analysis provided!")
   }
 
-  make_request(text, 'textfeatures', api_key, cloud, version, persona = TRUE, ...)
+  make_request(text, 'textfeatures', version, ...)
 }

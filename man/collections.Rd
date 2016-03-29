@@ -5,16 +5,16 @@
 \title{This is a status report endpoint. It is used to get the status on all of the collections currently trained, as
 well as some basic statistics on their accuracies. See docs for more information}
 \usage{
-collections(api_key = FALSE, cloud = FALSE, version = NULL, ...)
+collections(version = NULL, ...)
 }
 \arguments{
-\item{api_key}{your personal indico API key}
-
-\item{cloud}{subdomain for indico private cloud}
-
 \item{version}{for api version}
 
 \item{...}{additional arguments to passed to request}
+
+\item{api_key}{your personal indico API key}
+
+\item{cloud}{subdomain for indico private cloud}
 }
 \value{
 List with available collections

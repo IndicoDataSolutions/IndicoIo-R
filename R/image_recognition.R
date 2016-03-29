@@ -24,12 +24,12 @@
 #' max(unlist(features))
 #' sum(unlist(features))
 #'
-image_recognition <- function(img,  api_key = FALSE, cloud = FALSE, version = NULL, ...) {
+image_recognition <- function(img, version = NULL, ...) {
   # Checks parameters
   if (missing(img)) {
     stop("No image for analysis provided!")
   }
 
   img <- format_image(img, 144, TRUE)
-  make_request(img, 'imagerecognition', api_key, cloud, version, ...)
+  make_request(img, 'imagerecognition', version, ...)
 }
