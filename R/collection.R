@@ -25,11 +25,11 @@ setGeneric(name="make_custom_request",
               standardGeneric("make_custom_request")
            }
            )
-setMethod(f="make_custom_request", 
+setMethod(f="make_custom_request",
           signature="Collection",
-          definition=function(collection_object, data, api, version = NULL, apis = NULL, method = NULL, api_key = FALSE, cloud = FALSE, ...) {
+          definition=function(collection_object, data, api, version = NULL, apis = NULL, method = NULL, cloud = FALSE, ...) {
             make_request(
-              data, 'custom', version=version, collection = collection_object@name, 
+              data, 'custom', version=version, collection = collection_object@name,
               method = method, domain=collection_object@domain, shared=collection_object@shared, ...
             )
           }
