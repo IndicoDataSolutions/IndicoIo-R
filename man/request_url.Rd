@@ -28,4 +28,3 @@ url for API request
 \description{
 Produces the proper url to query with a given request
 }
-

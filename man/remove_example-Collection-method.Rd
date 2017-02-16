@@ -7,12 +7,9 @@
  single instance of content has been modified, but the remaining examples remain valid. For
  example, if a piece of content has been retagged.}
 \usage{
-\S4method{remove_example}{Collection}(collection_object, data, version = NULL,
-  ...)
+\S4method{remove_example}{Collection}(collection_object, data, ...)
 }
 \arguments{
-\item{version}{for api version}
-
 \item{...}{additional arguments to passed to request}
 
 \item{collection}{the collection object for this model}
@@ -20,10 +17,6 @@
 \item{The}{exact text you wish to remove from the given collection. If the string
 provided does not match a known piece of text then this will fail. Again, this is required if
 an id is not provided, and vice-versa.}
-
-\item{api_key}{your personal indico API key}
-
-\item{cloud}{subdomain for indico private cloud}
 }
 \value{
 List with available collections
@@ -34,11 +27,10 @@ This is an API made to remove a single instance of training data. This is useful
  example, if a piece of content has been retagged.
 }
 \examples{
-collection <- Collection(name='example')
+collection <- Collection(name = 'example')
 test_data <- list(list("I love my friends!", "extrovert"),
                   list("I love to be alone", "introvert"),
                   list("I have mixed feelings on people", "ambivert"))
 addData(collection, test_data)
 remove_example(collection, test_data[[1]][[1]])
 }
-

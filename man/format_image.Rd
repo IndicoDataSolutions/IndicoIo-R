@@ -19,4 +19,3 @@ string base64 encoding of resized image
 \description{
 Given an input image, returns a data.frame obj
 }
-

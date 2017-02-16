@@ -36,4 +36,3 @@ cat(sprintf("This text has \%s tonality",
 \keyword{learning}
 \keyword{machine}
 \keyword{multi}
-

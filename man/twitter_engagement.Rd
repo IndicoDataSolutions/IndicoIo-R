@@ -39,4 +39,3 @@ cat(sprintf("This text has twitter engagement of \%f",
 \keyword{learning}
 \keyword{machine}
 \keyword{twitter}
-

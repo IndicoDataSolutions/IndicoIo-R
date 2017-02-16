@@ -27,4 +27,3 @@ cat(sprintf("\%s is mentioned in the input text", result[[1]]["text"]))
 \seealso{
 \code{\link{places}}, \code{\link{organizations}}
 }
-

@@ -30,4 +30,3 @@ Given input data, return the response from the indico API endpoint specified
 \keyword{indico.io}
 \keyword{learning}
 \keyword{machine}
-

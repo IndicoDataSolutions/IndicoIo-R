@@ -25,4 +25,3 @@ nested associated array of correlation strengths
 \description{
 Given an array of data and a vector of apis, returns a nested associate array of correlation strengths
 }
-

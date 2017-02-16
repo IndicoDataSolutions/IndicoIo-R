@@ -31,4 +31,3 @@ cat(sprintf("The author of text is \%s",
 \seealso{
 \code{\link{political}}, \code{\link{sentiment}}, \code{\link{text_tags}}
 }
-

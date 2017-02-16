@@ -4,7 +4,7 @@
 \alias{political}
 \title{Returns a probability distribution over the political alignment of the speaker}
 \usage{
-political(text, version = NULL, ...)
+political(text, version = 2, ...)
 }
 \arguments{
 \item{text}{text for analysis}
@@ -45,4 +45,3 @@ cat(sprintf("This text is most like \%s and least like \%s",
 \keyword{machine}
 \keyword{political}
 \keyword{sentiment}
-

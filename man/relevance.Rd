@@ -27,4 +27,3 @@ cat(sprintf("\%s is mentioned in the input text", result[0]['text']))
 \seealso{
 \code{\link{keywords}}
 }
-

@@ -8,18 +8,12 @@ corruption issue, or a large amount of incorrect data has been fed into the API 
 to correct. This allows you to clear a colletion and start from scratch. Use with caution! This is not
 reversible.}
 \usage{
-\S4method{clear}{Collection}(collection_object, data, version = NULL, ...)
+\S4method{clear}{Collection}(collection_object, data, ...)
 }
 \arguments{
-\item{version}{for api version}
-
 \item{...}{additional arguments to passed to request}
 
 \item{collection}{the collection object for this model}
-
-\item{api_key}{your personal indico API key}
-
-\item{cloud}{subdomain for indico private cloud}
 }
 \value{
 List with available collections
@@ -31,7 +25,6 @@ to correct. This allows you to clear a colletion and start from scratch. Use wit
 reversible.
 }
 \examples{
-collection <- Collection(name='example')
+collection <- Collection(name = 'example')
 clear(collection)
 }
-

@@ -19,4 +19,3 @@ format_images(imgs, size, min_axis = FALSE)
 \description{
 Given a list of input images, returns a list of `string`s
 }
-

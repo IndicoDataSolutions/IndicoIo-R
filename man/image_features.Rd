@@ -49,4 +49,3 @@ sum(unlist(features))
 \keyword{learning}
 \keyword{machine}
 \keyword{recognition}
-

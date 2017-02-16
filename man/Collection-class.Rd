@@ -2,10 +2,9 @@
 % Please edit documentation in R/collection.R
 \docType{class}
 \name{Collection-class}
-\alias{Collection}
 \alias{Collection-class}
+\alias{Collection}
 \title{A class description}
 \value{
 Collection object
 }
-

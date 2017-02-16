@@ -37,4 +37,3 @@ emotion <- facial_localization(img)
 \keyword{learning}
 \keyword{machine}
 \keyword{recognition}
-

@@ -48,4 +48,3 @@ cat(sprintf("Next possible is '\%s' emotion with probability \%0.4f.",
 \keyword{learning}
 \keyword{machine}
 \keyword{recognition}
-

@@ -38,4 +38,3 @@ cat(sprintf("Next possible is \%s with probability \%0.4f.",
 \keyword{indico.io}
 \keyword{learning}
 \keyword{machine}
-

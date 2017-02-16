@@ -31,4 +31,3 @@ cat(sprintf("Detected \%s persona with probability \%0.4f.\\n",
 \seealso{
 \code{\link{personality}}, \code{\link{sentiment}}, \code{\link{text_tags}}
 }
-

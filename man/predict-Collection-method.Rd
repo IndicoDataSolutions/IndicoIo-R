@@ -6,8 +6,7 @@
 \title{This is the prediction endpoint. This will be the primary interaction point for all predictive
  analysis.}
 \usage{
-\S4method{predict}{Collection}(collection_object, data, version = NULL,
-  domain = NULL, ...)
+\S4method{predict}{Collection}(collection_object, data, ...)
 }
 \arguments{
 \item{data}{the text example being provided to the API. As a general rule, the data should be as
@@ -16,19 +15,10 @@ in different domains is used very differently the accuracy will generally drop a
 difference between this text and the training text increases. Base64 encoded image data, image urls, and
 text content are all valid.}
 
-\item{version}{for api version}
-
-\item{domain}{String: This is an identifier that helps determine the appropriate techniques for indico
-to use behind the scenes to train your model.  One of {"standard", "topics"}}
-
 \item{...}{additional arguments to passed to request}
 
 \item{collection}{the collection object for this model
 the response format for the given label will match the format of the training examples}
-
-\item{api_key}{your personal indico API key}
-
-\item{cloud}{subdomain for indico private cloud}
 }
 \value{
 List with available collections
@@ -38,7 +28,7 @@ This is the prediction endpoint. This will be the primary interaction point for 
  analysis.
 }
 \examples{
-collection <- Collection(name='example')
+collection <- Collection(name = 'example')
 test_data <- list(list("I love my friends!", "extrovert"),
                   list("I love to be alone", "introvert"),
                   list("I have mixed feelings on people", "ambivert"))
@@ -49,4 +39,3 @@ res <- predict(collection, "I love my friends!")
 cat(sprintf("The likelihood the author was an extrovert is \\\%0.4f.",
             res[["extrovert"]]))
 }
-

@@ -22,4 +22,3 @@ Finds the names of places in the input text
 \seealso{
 \code{\link{people}}, \code{\link{organizations}}
 }
-

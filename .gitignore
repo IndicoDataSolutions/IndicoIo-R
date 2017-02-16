@@ -1,2 +1,4 @@
 indicoio.Rcheck/
 indicoio_*.tar.gz
+.Rproj.user
+*.Rproj

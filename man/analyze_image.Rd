@@ -34,4 +34,3 @@ emotion <- analyze_image(img, apis=c("fer"))
 \keyword{learning}
 \keyword{machine}
 \keyword{multi}
-

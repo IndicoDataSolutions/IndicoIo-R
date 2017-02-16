@@ -17,4 +17,3 @@ converted_results converted response list
 \description{
 Given response list and list of user input apis, return properly named response
 }
-

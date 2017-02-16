@@ -39,4 +39,3 @@ cat(sprintf("Next possible is \%s with probability \%0.4f.",
 \keyword{learning}
 \keyword{machine}
 \keyword{tagging}
-

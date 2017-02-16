@@ -6,24 +6,16 @@
 \title{Block until the collection's model is completed training}
 \usage{
 \S4method{wait}{Collection}(collection_object, interval = 1, timeout = 60,
-  version = NULL, ...)
+  ...)
 }
 \arguments{
 \item{interval}{how reguarly to check if the model is done training}
 
 \item{timeout}{max time to wait before erroring}
 
-\item{version}{for api version}
-
 \item{...}{additional arguments to passed to request}
 
 \item{collection}{the collection object for this model}
-
-\item{collection}{the collection object for this model}
-
-\item{api_key}{your personal indico API key}
-
-\item{cloud}{subdomain for indico private cloud}
 }
 \value{
 List with available collections
@@ -32,7 +24,7 @@ List with available collections
 Block until the collection's model is completed training
 }
 \examples{
-collection <- Collection(name='example')
+collection <- Collection(name = 'example')
 test_data <- list(list("I love my friends!", "extrovert"),
                   list("I love to be alone", "introvert"),
                   list("I have mixed feelings on people", "ambivert"))
@@ -40,4 +32,3 @@ addData(collection, test_data)
 train(collection)
 wait(collection)
 }
-

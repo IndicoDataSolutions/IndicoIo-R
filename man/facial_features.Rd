@@ -38,4 +38,3 @@ length(features)
 \keyword{learning}
 \keyword{machine}
 \keyword{recognition}
-

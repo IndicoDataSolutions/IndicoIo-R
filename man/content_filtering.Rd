@@ -43,4 +43,3 @@ probabilities <- content_filtering(img)
 \keyword{indico.io}
 \keyword{learning}
 \keyword{machine}
-
