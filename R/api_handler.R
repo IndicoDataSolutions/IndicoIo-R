@@ -176,3 +176,42 @@ format_images <- function(imgs, size, min_axis=FALSE) {
   }
   img_list
 }
+
+
+#' Format a pdf or list of pdfs for sending to the indico API
+#'
+#' Given an input pdf url or filename, return b64 encoded file data
+#' @return string base64 encoding of pdf data
+#' @import httr rjson stringr base64enc EBImage
+format_pdf <- function(pdf) {
+  # Converts to anonymous data.frame
+  if (typeof(pdf) == "list" || length(pdf) > 1) {
+      return(format_pdfs(pdf, size));
+  }
+
+  if (is.character(pdf)) {
+    if (file.exists(pdf)) {
+      return(base64encode(pdf))
+    } else {
+      # url or base64 encoded pdf
+      return(pdf)
+    }
+  } else {
+      stop("Only base64 encoded strings, urls and filepaths are supported for image input.")
+  }
+}
+
+#' Format list of pdfs for sending to the indico API
+#'
+#' Given a list of input pdfs, returns base64 encoded pdfs or urls
+#' @param pfds List of pdfs to process (filename, url, base64 encoded)
+#' @return `String`s constructed from list of pdfs as base64 encoded
+#' @import httr rjson stringr base64enc EBImage
+format_pdfs <- function(pdfs) {
+  pdf_list <- list()
+  for (i in 1:length(pdfs)) {
+    pdf <- format_pdf(pdfs[[i]])
+    pdf_list[[i]] = pdf
+  }
+  pdf_list
+}
