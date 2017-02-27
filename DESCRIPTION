@@ -1,23 +1,15 @@
 Package: indicoio
 Title: A simple R Wrapper for the indico set of APIs - http://indico.io
-Version: 0.11.1
+Version: 0.11.3
 Author: Alexander Gedranovich <gedranovich@gmail.com>
 Maintainer: Madison May <madison@indico.io>
-Description: R-based client for Machine Learning APIs at http://indico.io.
-    Provides wrappers for following APIs: Positive/Negative Sentiment Analysis,
-    Political Sentiment Analysis, Image Feature Extraction, Facial Emotion
-    Recognition, Facial Feature Extraction, Language Detection.
-Depends:
-    R (>= 3.0.2),
-    httr,
-    rjson,
-    stringr,
-    png,
-    base64enc,
-    EBImage
+Description: R-based client for Machine Learning APIs at
+        http://indico.io. Provides wrappers for following APIs:
+        Positive/Negative Sentiment Analysis, Political Sentiment
+        Analysis, Image Feature Extraction, Facial Emotion Recognition,
+        Facial Feature Extraction, Language Detection.
+Depends: R (>= 3.0.2), httr, rjson, stringr, png, base64enc, EBImage
 License: file LICENSE
 LazyData: true
-Suggests:
-    testthat,
-    jpeg
-RoxygenNote: 5.0.1
+Suggests: testthat, jpeg
+RoxygenNote: 6.0.1
