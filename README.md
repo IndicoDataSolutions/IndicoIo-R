@@ -3,6 +3,10 @@ indicoio
 
 R client library for [indico's API](http://indico.io).
 
+Community Supported Library
+--------------
+This client library is no longer officially supported by indico. We welcome support from the community regarding bug fixes and additional features. Please submit a pull request with changes.
+
 ## Installation
 
 ```r
